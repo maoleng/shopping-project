@@ -1,18 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\ManufacturerController;
+    use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/test', function (){
+    return view('layout.master');
+});
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'manufacturer', 'as' => 'manufacturers.'], function() {
+    Route::get('/', [ManufacturerController::class, 'index'])->name('index');
+    Route::get('/create', [ManufacturerController::class, 'create'])->name('create');
+    Route::post('/store', [ManufacturerController::class, 'store'])->name('store');
+    Route::get('/edit/{manufacturer}', [ManufacturerController::class, 'edit'])->name('edit');
+    Route::delete('/{manufacturer}', [ManufacturerController::class, 'destroy'])->name('destroy');
+    Route::put('/update/{manufacturer}', [ManufacturerController::class, 'update'])->name('update');
 });
