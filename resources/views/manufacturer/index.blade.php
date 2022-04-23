@@ -18,7 +18,7 @@
             <td>{{$manufacturer->id}}</td>
             <td>{{$manufacturer->name}}</td>
             <td>
-                <img src="{{public_path()}}\storage\{{$manufacturer->image}}" width="200px">
+                <img src={{public_path()}}\storage\{{$manufacturer->image}} width="200px">
             </td>
             <td>
                 <a href="#">Xem</a>

@@ -69,10 +69,10 @@
             </a>
             <ul class="side-nav-second-level mm-collapse" aria-expanded="false">
                 <li>
-                    <a href="apps-ecommerce-products.html">Quản lý</a>
+                    <a href={{route('products.index')}}>Quản lý</a>
                 </li>
                 <li>
-                    <a href="apps-ecommerce-products-details.html">Thêm</a>
+                    <a href={{route('products.create')}}>Thêm</a>
                 </li>
             </ul>
         </li>
