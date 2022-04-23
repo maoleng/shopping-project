@@ -103,6 +103,8 @@ class ManufacturerController extends Controller
      */
     public function destroy(Manufacturer $manufacturer): RedirectResponse
     {
+        $filename = $manufacturer->image;
+        Storage::disk('public')->delete($filename);
         $manufacturer->delete();
         return redirect()->route('manufacturers.index');
     }
