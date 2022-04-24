@@ -4,76 +4,92 @@
     <form action="{{route('products.update', ['product' => $product->id])}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        Tên sản phẩm
-        <input type="text" name="name" value="{{$product->name}}">
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Tên sản phẩm</label>
+            <input value="{{$product->name}}" name="name" type="text" id="example-palaceholder" class="form-control" placeholder="Vinfast">
+        </div>
 
-        Giá
-        <input type="number" name="price" value="{{$product->price}}">
-        <br>
+        <div class="form-group">
+            <label for="example-number">Giá</label>
+            <input value="{{$product->price}}" class="form-control" id="example-number" type="number" name="price" placeholder="500000">
+        </div>
 
-        Mô tả
-        <textarea name="description" cols="30" rows="10">{{$product->description}}</textarea>
-        <br>
+        <div class="form-group">
+            <label for="example-textarea">Mô tả</label>
+            <textarea name="description" class="form-control" id="example-textarea" rows="5" placeholder="Sản phẩm khá oke">{{$product->description}}</textarea>
+        </div>
 
-        Nguồn gốc
-        <input type="text" name="origin" value="{{$product->origin}}">
-        <br>
 
-        Thời hạn bảo hành
-        <input type="text" name="insurance" value="{{$product->insurance}}">
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Nguồn gốc</label>
+            <input value="{{$product->origin}}" name="origin" type="text" id="example-palaceholder" class="form-control" placeholder="Trung Quốc">
+        </div>
 
-        Số lượng nhập vào
-        <input type="number" name="quantity" value="{{$product->quantity}}">
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Thời hạn bảo hành</label>
+            <input value="{{$product->insurance}}" name="insurance" type="text" id="example-palaceholder" class="form-control" placeholder="Có giá trị 1 năm">
+        </div>
 
-        Link video youtube
-        <input type="text" name="video" value={{$product->video}}>
-        <br>
+        <div class="form-group">
+            <label for="example-number">Số lượng nhập vào</label>
+            <input value="{{$product->quantity}}" class="form-control" id="example-number" type="number" name="quantity" placeholder="20">
+        </div>
 
-        Ảnh
-        <br>
-        Giữ nguyên ảnh cũ
-        <br>
-        @foreach($images as $image)
-            <img src={{public_path()}}\storage\{{$image->path}}>
-        @endforeach
-        <br>
-        Hoặc thay ảnh mới
-        <input type="file" class="form-control" name="images[]" placeholder="address" multiple>
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Link video youtube</label>
+            <input value={{$product->video}} type="text" id="example-palaceholder" class="form-control" placeholder="youtube.com/abcxyez" name="video">
+        </div>
 
-        Nhà sản xuất
-        <select name="manufacturer_id">
-            @foreach($manufacturers as $manufacturer)
-                <option value="{{$manufacturer->id}}"
-                    @if ($product->manufacturer_id === $manufacturer->id)
-                        selected
-                    @endif
-                >
-                    {{$manufacturer->name}}
-                </option>
+
+        <div class="form-group">
+            <label for="example-fileinput">Ảnh, logo (có thể chọn nhiều ảnh 1 lúc)</label>
+            <br>
+            Giữ nguyên ảnh cũ
+            @foreach($images as $image)
+                <img src={{url("storage/$image->path")}} height="200px">
             @endforeach
-        </select>
-        <br>
+            <br>
+            Hoặc thay ảnh mới
+            <br>
+            <input name="images[]" type="file" id="example-fileinput" class="form-control-file" required multiple>
+        </div>
 
-        Thể loại
-        <select name="subtype_id">
-            @foreach($subtypes as $subtype)
-                <option value="{{$subtype->id}}"
-                    @if ($subtype->id === $product->subtype_id)
-                        selected
-                    @endif
-                >
-                    {{$subtype->name}}
-                </option>
-            @endforeach
-        </select>
-        <br>
 
-        <button>Thêm</button>
+        <div class="form-group">
+            <label for="example-select">Nhà sản xuất</label>
+            <select class="form-control" id="example-select" name="manufacturer_id">
+                @foreach($manufacturers as $manufacturer)
+                    <option value="{{$manufacturer->id}}"
+                            @if ($product->manufacturer_id === $manufacturer->id)
+                            selected
+                        @endif
+                    >
+                        {{$manufacturer->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="example-select">Thể loại</label>
+            <select class="form-control" id="example-select" name="subtype_id">
+                @foreach($subtypes as $subtype)
+                    <option value="{{$subtype->id}}"
+                            @if ($subtype->id === $product->subtype_id)
+                            selected
+                        @endif
+                    >
+                        {{$subtype->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+
+
+        <button class="btn btn-primary">Sửa</button>
     </form>
+
 
 
 @endsection

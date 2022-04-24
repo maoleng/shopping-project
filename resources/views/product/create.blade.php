@@ -3,60 +3,75 @@
 
     <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
         @csrf
-        Tên sản phẩm
-        <input type="text" name="name">
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Tên sản phẩm</label>
+            <input name="name" type="text" id="example-palaceholder" class="form-control" placeholder="Vinfast">
+        </div>
 
-        Giá
-        <input type="number" name="price">
-        <br>
+        <div class="form-group">
+            <label for="example-number">Giá</label>
+            <input class="form-control" id="example-number" type="number" name="price" placeholder="500000">
+        </div>
 
-        Mô tả
-        <textarea name="description" cols="30" rows="10"></textarea>
-        <br>
+        <div class="form-group">
+        <label for="example-textarea">Mô tả</label>
+        <textarea name="description" class="form-control" id="example-textarea" rows="5" placeholder="Sản phẩm khá oke"></textarea>
+        </div>
 
-        Nguồn gốc
-        <input type="text" name="origin">
-        <br>
 
-        Thời hạn bảo hành
-        <input type="text" name="insurance">
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Nguồn gốc</label>
+            <input name="origin" type="text" id="example-palaceholder" class="form-control" placeholder="Trung Quốc">
+        </div>
 
-        Số lượng nhập vào
-        <input type="number" name="quantity">
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Thời hạn bảo hành</label>
+            <input name="insurance" type="text" id="example-palaceholder" class="form-control" placeholder="Có giá trị 1 năm">
+        </div>
 
-        Link video youtube
-        <input type="text" name="video" value="youtube.com/abcxyez">
-        <br>
+        <div class="form-group">
+            <label for="example-number">Số lượng nhập vào</label>
+            <input class="form-control" id="example-number" type="number" name="quantity" placeholder="20">
+        </div>
 
-        Ảnh
-        <input required type="file" class="form-control" name="images[]" placeholder="address" multiple>
-        <br>
+        <div class="form-group">
+            <label for="example-palaceholder">Link video youtube</label>
+            <input type="text" id="example-palaceholder" class="form-control" placeholder="youtube.com/abcxyez" name="video">
+        </div>
 
-        Nhà sản xuất
-        <select name="manufacturer_id">
-            @foreach($manufacturers as $manufacturer)
-            <option value="{{$manufacturer->id}}">
-                {{$manufacturer->name}}
-            </option>
-            @endforeach
-        </select>
-        <br>
+        <div class="form-group">
+            <label for="example-fileinput">Ảnh, logo (có thể chọn nhiều ảnh 1 lúc)</label>
+            <input name="images[]" type="file" id="example-fileinput" class="form-control-file" required multiple>
+        </div>
 
-        Thể loại
-        <select name="subtype_id">
-            @foreach($subtypes as $subtype)
-                <option value="{{$subtype->id}}">
-                    {{$subtype->name}}
-                </option>
-            @endforeach
-        </select>
-        <br>
 
-        <button>Thêm</button>
+        <div class="form-group">
+            <label for="example-select">Nhà sản xuất</label>
+            <select class="form-control" id="example-select" name="manufacturer_id">
+                @foreach($manufacturers as $manufacturer)
+                    <option value="{{$manufacturer->id}}">
+                        {{$manufacturer->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="example-select">Thể loại</label>
+            <select class="form-control" id="example-select" name="subtype_id">
+                @foreach($subtypes as $subtype)
+                    <option value="{{$subtype->id}}">
+                        {{$subtype->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+
+
+        <button class="btn btn-primary">Thêm</button>
     </form>
+
 
 
 @endsection

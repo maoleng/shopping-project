@@ -31,11 +31,13 @@ class ProductController extends Controller
             ->leftJoin('manufacturers','products.manufacturer_id', '=', 'manufacturers.id')
             ->leftJoin('subtypes','products.subtype_id', '=', 'subtypes.id')
             ->leftJoin('types','subtypes.type_id', '=', 'types.id')
-            ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name')
+            ->leftJoin('images', 'images.product_id', '=', 'products.id')
+            ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name', 'images.path')
+            ->groupBy('images.product_id')
             ->get();
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
         ]);
     }
 
@@ -131,7 +133,7 @@ class ProductController extends Controller
                 'path' => $path,
             ]);
         }
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 
     /**

@@ -3,46 +3,56 @@
 
     <a href="{{route('products.create')}}">Thêm</a>
 
-    <table border="1px solid black" width="100%" >
+    <table class="table table-striped table-centered mb-0">
+        <thead>
         <tr>
-            <td>#</td>
-            <td>Tên sản phẩm</td>
-            <td>Số lượng còn lại</td>
-            <td>Giá</td>
-            <td>Thể loại</td>
-            <td>Danh mục</td>
-            <td>Nhà sản xuất</td>
-            <td>Xem chi tiết</td>
-            <td>Sửa</td>
-            <td>Xóa</td>
+            <th>#</th>
+            <th>Tên sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Số lượng còn lại</th>
+            <th>Giá</th>
+            <th>Thể loại</th>
+            <th>Danh mục</th>
+            <th>Nhà sản xuất</th>
+            <th>Xem</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
         </tr>
-
+        </thead>
+        <tbody>
         @foreach($products as $product)
+
         <tr>
-            <td>{{$product->id}}</td>
+            <td class="table-user">
+                {{$product->id}}
+            </td>
             <td>{{$product->name}}</td>
+            <td>
+                <img src="{{url("storage/$product->path")}}" alt="table-user" class="mr-2 rounded-circle" height="30px" />
+            </td>
             <td>{{$product->quantity}}</td>
             <td>{{$product->price}}</td>
             <td>{{$product->type_name}}</td>
             <td>{{$product->subtype_name}}</td>
             <td>{{$product->manufacturer_name}}</td>
-            <td>
-                <a href="#">Xem</a>
+            <td class="table-action">
+                <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
             </td>
-            <td>
-                <a href="{{route('products.edit', ['product' => $product->id])}}">
-                    Sửa
-                </a>
+            <td class="table-action">
+                <a href="{{route('products.edit', ['product' => $product->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
             </td>
-            <td>
+            <td class="table-action">
                 <form action="{{route('products.destroy', ['product' => $product->id])}}" method="post">
                     @method('DELETE')
                     @csrf
-                    <button>Xóa</button>
+                    <button class="action-icon btn">
+                        <i class="mdi mdi-delete"></i>
+                    </button>
                 </form>
             </td>
         </tr>
         @endforeach
-    </table>
 
+        </tbody>
+    </table>
 @endsection
