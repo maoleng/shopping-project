@@ -2,47 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\type\StoreTypeRequest;
+use App\Http\Requests\type\UpdateTypeRequest;
+use App\Models\Subtype;
 use App\Models\Type;
-use App\Http\Requests\StoreTypeRequest;
-use App\Http\Requests\UpdateTypeRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
-        //
+        $types = Type::all();
+        return view('type.index', [
+            'types'  => $types
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View|Factory|Application
     {
-        //
+        return view('type.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTypeRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreTypeRequest  $request
+     * @return RedirectResponse
      */
-    public function store(StoreTypeRequest $request)
+    public function store(StoreTypeRequest $request): RedirectResponse
     {
-        //
+        Type::query()->create($request->validated());
+        return redirect()->route('types.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Type  $type
+     * @param  Type  $type
      * @return \Illuminate\Http\Response
      */
     public function show(Type $type)
@@ -53,34 +62,48 @@ class TypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
+     * @param  Type  $type
+     * @return Application|Factory|View
      */
-    public function edit(Type $type)
+    public function edit(Type $type): View|Factory|Application
     {
-        //
+        return view('type.edit', [
+            'type' => $type
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTypeRequest  $request
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
+     * @param  UpdateTypeRequest  $request
+     * @param  Type  $type
+     * @return RedirectResponse
      */
-    public function update(UpdateTypeRequest $request, Type $type)
+    public function update(UpdateTypeRequest $request, Type $type): RedirectResponse
     {
-        //
+        Type::query()->where('id', $type->id)->update($request->validated());
+        return redirect()->route('types.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Type  $type
-     * @return \Illuminate\Http\Response
+     * @param  Type  $type
+     * @return RedirectResponse
      */
-    public function destroy(Type $type)
+    public function destroy(Type $type): RedirectResponse
     {
-        //
+        Type::query()->where('id', $type->id)->delete();
+        return redirect()->route('types.index');
+    }
+
+    public function detail(Type $type): Factory|View|Application
+    {
+        $subtypes = Subtype::query()->where('type_id', $type->id)->get();
+
+        return view('subtype.index', [
+            'subtypes' => $subtypes,
+            'type_name' => $type->name
+        ]);
     }
 }

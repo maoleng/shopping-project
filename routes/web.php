@@ -1,10 +1,13 @@
 <?php
 
+    use App\Http\Controllers\DashboardCustomer;
     use App\Http\Controllers\ManufacturerController;
     use App\Http\Controllers\ProductController;
+    use App\Http\Controllers\SubtypeController;
+    use App\Http\Controllers\TypeController;
     use Illuminate\Support\Facades\Route;
 
-Route::get('/', )
+Route::get('/', [DashboardCustomer::class, 'index']);
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -27,4 +30,21 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('update');
     });
 
+    Route::group(['prefix' => 'type', 'as' => 'types.'], function() {
+        Route::get('/', [TypeController::class, 'index'])->name('index');
+        Route::get('/create', [TypeController::class, 'create'])->name('create');
+        Route::post('/store', [TypeController::class, 'store'])->name('store');
+        Route::get('/edit/{type}', [TypeController::class, 'edit'])->name('edit');
+        Route::delete('/{type}', [TypeController::class, 'destroy'])->name('destroy');
+        Route::put('/update/{type}', [TypeController::class, 'update'])->name('update');
+    });
+
+    Route::group(['prefix' => 'subtype', 'as' => 'subtypes.'], function() {
+        Route::get('/create/{type}', [SubtypeController::class, 'create'])->name('create');
+        Route::get('/{type}', [SubtypeController::class, 'index'])->name('index');
+        Route::post('/store/{type}', [SubtypeController::class, 'store'])->name('store');
+        Route::get('/edit/{subtype}', [SubtypeController::class, 'edit'])->name('edit');
+        Route::delete('/{subtype}', [SubtypeController::class, 'destroy'])->name('destroy');
+        Route::put('/update/{subtype}', [SubtypeController::class, 'update'])->name('update');
+    });
 });
