@@ -195,6 +195,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): RedirectResponse
     {
+        $specification_ids = SpecificationProduct::query()->where('product_id', $product->id)->select('specification_id')->get();
+        SpecificationProduct::query()->where('product_id', $product->id)->delete();
+        $spec_ids = [];
+        foreach ($specification_ids as $specification_id) {
+            $spec_ids[] = $specification_id->specification_id;
+        }
+        Specification::query()->whereIn('id', $spec_ids)->delete();
+
         $filename = "products/" . $product->id;
         Storage::disk('public')->deleteDirectory($filename);
 
