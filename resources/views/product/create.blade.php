@@ -44,6 +44,13 @@
             <input name="images[]" type="file" id="example-fileinput" class="form-control-file" required multiple>
         </div>
 
+        <div class="form-group">
+            <label for="example-textarea">Thông số kỹ thuật</label>
+            <textarea name="specification" class="form-control" id="example-textarea" rows="5"
+                placeholder="Đường kính:20cm
+Áp lực phun:1.5-2.5 MPa (15 - 25 Bar)"></textarea>
+        </div>
+
 
         <div class="form-group">
             <label for="example-select">Nhà sản xuất</label>

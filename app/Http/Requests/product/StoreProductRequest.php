@@ -53,6 +53,9 @@ class StoreProductRequest extends FormRequest
             ],
             'subtype_id' => [
                 'required'
+            ],
+            'specification' => [
+                'required'
             ]
         ];
     }

@@ -53,6 +53,9 @@ class UpdateProductRequest extends FormRequest
             ],
             'subtype_id' => [
                 'required'
+            ],
+            'specification' => [
+                'required'
             ]
         ];
     }

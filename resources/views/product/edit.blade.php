@@ -51,9 +51,15 @@
             <br>
             Hoặc thay ảnh mới
             <br>
-            <input name="images[]" type="file" id="example-fileinput" class="form-control-file" required multiple>
+            <input name="images[]" type="file" id="example-fileinput" class="form-control-file" multiple>
         </div>
 
+        <div class="form-group">
+            <label for="example-textarea">Thông số kỹ thuật</label>
+            <textarea name="specification" class="form-control" id="example-textarea" rows="5"
+                      placeholder="Đường kính:20cm
+Áp lực phun:1.5-2.5 MPa (15 - 25 Bar)">@foreach($specifications as $specification){{$specification->name_value}} @endforeach</textarea>
+        </div>
 
         <div class="form-group">
             <label for="example-select">Nhà sản xuất</label>

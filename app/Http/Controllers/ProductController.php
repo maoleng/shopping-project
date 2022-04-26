@@ -7,6 +7,8 @@ use App\Http\Requests\product\UpdateProductRequest;
 use App\Models\Image;
 use App\Models\Manufacturer;
 use App\Models\Product;
+use App\Models\Specification;
+use App\Models\SpecificationProduct;
 use App\Models\Subtype;
 use App\Models\Type;
 use Illuminate\Contracts\Foundation\Application;
@@ -69,6 +71,21 @@ class ProductController extends Controller
         $create = Product::query()->create($data);
         $product_id = $create->id;
 
+        $specification_data = $request->validated()['specification'];
+        $specifications = explode(PHP_EOL, $specification_data);
+        foreach ($specifications as $specification) {
+            $name = explode(':', $specification)[0];
+            $value = explode(':', $specification)[1];
+            $create = Specification::query()->create([
+                'name' => $name,
+                'value' => $value
+            ]);
+            SpecificationProduct::query()->create([
+                'specification_id' => $create->id,
+                'product_id' => $product_id
+            ]);
+        }
+
         foreach ($request->file('images') as $image) {
             $path = Storage::disk('public')->putFile('products/' . $product_id, $image);
             Image::query()->create([
@@ -102,11 +119,18 @@ class ProductController extends Controller
         $subtypes = Subtype::all();
         $images = Image::query()->where('product_id', $product->id)->get();
 
+        $specifications = SpecificationProduct::query()
+            ->leftJoin('specifications', 'specifications.id', '=', 'specification_products.specification_id')
+            ->select(DB::raw("CONCAT(specifications.name, ':',specifications.value, '\n') AS 'name_value' , specification_products.product_id"))
+            ->where('specification_products.product_id', $product->id)
+            ->get();
+
         return view('product.edit', [
             'product' => $product,
             'manufacturers' => $manufacturers,
             'subtypes' => $subtypes,
-            'images' => $images
+            'images' => $images,
+            'specifications' => $specifications
         ]);
     }
 
@@ -119,20 +143,47 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
-        if (empty($request->validated()['images'])) {
-            Product::query()->where('id', $product->id)->update($request->validated());
+        $data = $request->except(['_token', '_method', 'specification', 'images']);
+
+        if (isset($request->validated()['images'])) {
+            $filename = "products/" . $product->id;
+            Storage::disk('public')->deleteDirectory($filename);
+            $a = Image::query()->where('product_id', $product->id)->delete();
+            foreach ($request->file('images') as $image) {
+
+                $path = Storage::disk('public')->putFile('products/' . $product->id, $image);
+                Image::query()->where('product_id', $product->id)->create([
+                    'path' => $path,
+                    'product_id' => $product->id
+                ]);
+
+            }
         }
 
-        $filename = "products/" . $product->id;
+        Product::query()->where('id', $product->id)->update($data);
 
-        Storage::disk('public')->deleteDirectory($filename);
+        $specification_ids = SpecificationProduct::query()->where('product_id', $product->id)
+            ->select('specification_id')->get();
+        SpecificationProduct::query()->where('product_id', $product->id)->delete();
+        foreach ($specification_ids as $specification_id) {
+            Specification::query()->where('id', $specification_id->specification_id)->delete();
+        }
 
-        foreach ($request->file('images') as $image) {
-            $path = Storage::disk('public')->putFile('products/' . $product->id, $image);
-            Image::query()->where('product_id', $product->id)->update([
-                'path' => $path,
+        $specification_data = $request->validated()['specification'];
+        $specifications = explode(PHP_EOL, $specification_data);
+        foreach ($specifications as $specification) {
+            $name = explode(':', $specification)[0];
+            $value = explode(':', $specification)[1];
+            $create = Specification::query()->create([
+                'name' => $name,
+                'value' => $value
+            ]);
+            SpecificationProduct::query()->create([
+                'specification_id' => $create->id,
+                'product_id' => $product->id
             ]);
         }
+
         return redirect()->route('products.index');
     }
 
