@@ -1,5 +1,7 @@
 <?php
 
+    use App\Http\Controllers\AdminController;
+    use App\Http\Controllers\CustomerController;
     use App\Http\Controllers\DashboardCustomer;
     use App\Http\Controllers\ManufacturerController;
     use App\Http\Controllers\ProductController;
@@ -10,6 +12,10 @@
 Route::get('/', [DashboardCustomer::class, 'index']);
 
 
+//
+//Route::group([
+//    'middleware' =>
+//])
 Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'manufacturer', 'as' => 'manufacturers.'], function() {
@@ -40,11 +46,31 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'subtype', 'as' => 'subtypes.'], function() {
-        Route::get('/create/{type}', [SubtypeController::class, 'create'])->name('create');
         Route::get('/{type}', [SubtypeController::class, 'index'])->name('index');
+        Route::get('/create/{type}', [SubtypeController::class, 'create'])->name('create');
         Route::post('/store/{type}', [SubtypeController::class, 'store'])->name('store');
         Route::get('/edit/{subtype}', [SubtypeController::class, 'edit'])->name('edit');
         Route::delete('/{subtype}', [SubtypeController::class, 'destroy'])->name('destroy');
         Route::put('/update/{subtype}', [SubtypeController::class, 'update'])->name('update');
+    });
+
+    Route::group(['prefix' => 'customer', 'as' => 'customers.'], function() {
+        Route::get('/', [CustomerController::class, 'index'])->name('index');
+//        Route::get('/create', [CustomerController::class, 'create'])->name('create');
+//        Route::post('/store/', [CustomerController::class, 'store'])->name('store');
+//        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name('edit');
+        Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('destroy');
+//        Route::put('/update/{customer}', [CustomerController::class, 'update'])->name('update');
+    });
+
+    Route::group(['prefix' => 'admin', 'as' => 'admins.'], function() {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/create', [AdminController::class, 'create'])->name('create');
+        Route::post('/store', [AdminController::class, 'store'])->name('store');
+        Route::get('/edit/{admin}', [AdminController::class, 'edit'])->name('edit');
+        Route::delete('/{admin}', [AdminController::class, 'destroy'])->name('destroy');
+        Route::put('/update/{admin}', [AdminController::class, 'update'])->name('update');
+        Route::put('/lock/{admin}', [AdminController::class, 'lock'])->name('lock');
+        Route::put('/unlock/{admin}', [AdminController::class, 'unlock'])->name('unlock');
     });
 });

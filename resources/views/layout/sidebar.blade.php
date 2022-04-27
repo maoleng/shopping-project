@@ -109,7 +109,7 @@
         <li class="side-nav-title side-nav-item">Custom</li>
 
         <li class="side-nav-item">
-            <a href="apps-chat.html" class="side-nav-link">
+            <a href="{{route('customers.index')}}" class="side-nav-link">
                 <i class="uil-comments-alt"></i>
                 <span> Khách hàng </span>
             </a>
@@ -126,7 +126,7 @@
         </li>
 
         <li class="side-nav-item">
-            <a href="apps-chat.html" class="side-nav-link">
+            <a href="{{route('admins.index')}}" class="side-nav-link">
                 <i class="uil-package"></i>
                 <span> Nhân viên </span>
             </a>
