@@ -196,8 +196,14 @@
                                         <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                                     </span>
                 <span>
-                                        <span class="account-user-name">Dominic Keller</span>
-                                        <span class="account-position">Founder</span>
+                                        <span class="account-user-name">{{session()->get('name')}}</span>
+                                        <span class="account-position">
+                                            @if (session()->get('level') === 0)
+                                                Nhân viên
+                                            @else
+                                                Sếp
+                                            @endif
+                                        </span>
                                     </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
