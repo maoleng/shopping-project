@@ -106,14 +106,14 @@
             </ul>
         </li>
 
-        <li class="side-nav-title side-nav-item">Custom</li>
+{{--        <li class="side-nav-title side-nav-item">Custom</li>--}}
 
-        <li class="side-nav-item">
-            <a href="{{route('customers.index')}}" class="side-nav-link">
-                <i class="uil-comments-alt"></i>
-                <span> Khách hàng </span>
-            </a>
-        </li>
+{{--        <li class="side-nav-item">--}}
+{{--            <a href="{{route('customers.index')}}" class="side-nav-link">--}}
+{{--                <i class="uil-comments-alt"></i>--}}
+{{--                <span> Khách hàng </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 
 
         <li class="side-nav-title side-nav-item mt-1">Components</li>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class SubtypeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'type_id' => Type::query()->inRandomOrder()->value('id')
         ];
     }
 }

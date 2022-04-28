@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+    namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
 
-class Manufacturer extends Model
-{
-    use HasFactory;
+    class Manufacturer extends Model
+    {
+        use HasFactory;
 
-    protected $fillable = [
-        'name', 'image', 'description'
-    ];
-}
+        protected $fillable = [
+            'name', 'image', 'description'
+        ];
+    }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\Specification;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class SpecificationProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'product_id' => Product::query()->inRandomOrder()->value('id'),
+            'specification_id' => Specification::query()->inRandomOrder()->value('id'),
         ];
     }
 }

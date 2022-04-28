@@ -232,8 +232,6 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-left: -4px;
-    margin-right: -4px;
 }
 /*>PC Medium resolution */
 @media (min-width: 1023px) {
@@ -397,7 +395,7 @@
         padding-right: 8px;
     }
 }
-/* Bước 4:Tạo Column 
+/* Bước 4:Tạo Column
     Vai trò:Chứa các thành phần trong website*/
 .col {
     padding-left: 4px;

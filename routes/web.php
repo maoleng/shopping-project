@@ -2,7 +2,6 @@
 
     use App\Http\Controllers\AdminController;
     use App\Http\Controllers\AuthController;
-    use App\Http\Controllers\CustomerController;
     use App\Http\Controllers\DashboardCustomer;
     use App\Http\Controllers\ManufacturerController;
     use App\Http\Controllers\ProductController;
@@ -57,15 +56,6 @@ Route::group([
             Route::get('/edit/{subtype}', [SubtypeController::class, 'edit'])->name('edit');
             Route::delete('/{subtype}', [SubtypeController::class, 'destroy'])->name('destroy');
             Route::put('/update/{subtype}', [SubtypeController::class, 'update'])->name('update');
-        });
-
-        Route::group(['prefix' => 'customer', 'as' => 'customers.'], function() {
-            Route::get('/', [CustomerController::class, 'index'])->name('index');
-//        Route::get('/create', [CustomerController::class, 'create'])->name('create');
-//        Route::post('/store/', [CustomerController::class, 'store'])->name('store');
-//        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name('edit');
-            Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('destroy');
-//        Route::put('/update/{customer}', [CustomerController::class, 'update'])->name('update');
         });
 
         Route::group([

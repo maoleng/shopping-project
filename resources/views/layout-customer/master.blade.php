@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/base.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
     <link rel="stylesheet" href="{{asset('css/grid.css')}}" />
-{{--    <link rel="stylesheet" href="{{asset('css/responsive.css')}}" />--}}
-<!-- Reset CSS -->
+    <!-- Reset CSS -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -29,93 +28,27 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     />
-
-    <style>
-
-    </style>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
 </head>
-
 <body>
 
+@include('layout-customer.header')
 
+<!-- START CONTENT -->
+@yield('content')
+<!-- END CONTENT -->
 
-<div>
-    <div class="header">
-    </div>
+@include('layout-customer.footer')
 
-    <div class="content">
-        @foreach($products as $product)
+@include('layout-customer.model')
 
-            <div class="home-product">
-                <!-- Grid>Row>Column -->
-                <div class="row">
-                    <div class="col l-2-4 m-4 c-6">
-                        <!-- Product Item -->
-                        <a class="home-product-item" href="#">
-                            <div
-                                class="product-img"
-                                style="background-image: url({{url("storage/$product->path")}})"
-                            >
-                                <!-- Drop file ảnh vào khúc URL -->
-                            </div>
-                            <h4 class="product-heading">
-                                {{$product->name}}
-                            </h4>
-                            <div class="price-wrap">
-                            <span class="old-price">
-                                {{$product->price}}
-                            </span>
-                                <span class="current-price" class="hidden">
-                                <!-- Drop giá giảm,nếu ko có thì thêm vào class hidden -->
-                            </span>
-                            </div>
-                            <div class="product-action">
-                            <span class="like-product">
-                                <i class="far fa-heart"></i>
-                                <!-- Không thích trái tim thì thêm class hidden vào class like-product -->
-                            </span>
-                                <span class="rating-product">
-                                <i class="fas fa-star rating-product-gold"></i>
-                                <i class="fas fa-star rating-product-gold"></i>
-                                <i class="fas fa-star rating-product-gold"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                    <!-- Thêm class rating-product-gold nếu muốn sao sáng -->
-                            </span>
-                                <span class="already-sold">
-                                <!-- Drop content số lượng đã bán -->
-                            </span>
-                            </div>
-                            <div class="origin">
-                            <span class="brand-origin">
-                                {{$product->manufacturer_name}}
-                            </span>
-                                <span class="origin-name">
-                                {{$product->origin}}
-                            </span>
-                            </div>
-{{--                            <div class="sale-off">--}}
-{{--                            <span class="sale-value">--}}
-{{--                                <!-- Drop content % giảm -->--}}
-{{--                            </span>--}}
-{{--                                <span class="sale-label">GIẢM</span>--}}
-{{--                            </div>--}}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-
-    </div>
-
-    <div class="footer">
-    </div>
-</div>
-
-
+<script src="{{asset('js/layout-customer-script.js')}}"></script>
 
 </body>
 </html>
-
-
-
