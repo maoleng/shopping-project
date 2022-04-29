@@ -4,6 +4,7 @@
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\DashboardCustomer;
     use App\Http\Controllers\ManufacturerController;
+    use App\Http\Controllers\OrderController;
     use App\Http\Controllers\ProductController;
     use App\Http\Controllers\SubtypeController;
     use App\Http\Controllers\TypeController;
@@ -12,6 +13,11 @@
     use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardCustomer::class, 'index']);
+Route::get('/type/{type}', [DashboardCustomer::class, 'indexWhereType'])->name('type');
+Route::get('/subtype/{subtype?}', [DashboardCustomer::class, 'indexWhereSubtype'])->name('subtype');
+Route::get('product/{product}', [DashboardCustomer::class, 'detailProduct'])->name('detail_product');
+Route::post('cart/add/{product}', [OrderController::class, 'addToCart'])->name('add_to_cart');
+
 
 Route::get('admin/login', [AuthController::class, 'login'])->name('admins.login');
 Route::post('admin/login', [AuthController::class, 'processLogin'])->name('admins.process_login');

@@ -1,6 +1,8 @@
 @extends('layout-customer.master')
 @section('content')
-<div class="home-product">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <div class="home-product">
     <!-- Grid>Row>Column -->
     <div class="grid wide">
         <div class="row">
@@ -8,7 +10,7 @@
             @foreach($products as $product)
             <div class="col l-2-4 m-4 c-6">
                 <!-- Product Item -->
-                <a class="home-product-item" href="#">
+                <a class="home-product-item" href="{{route('detail_product', ['product' => $product->id])}}">
                     <div
                         class="product-img"
                         style="background-image: url({{$product->path}});"
@@ -46,7 +48,9 @@
         </div>
     </div>
 
-    {{$products->links()}}
+
+
 
 </div>
+{{ $products->links('vendor.pagination.custom') }}
 @endsection

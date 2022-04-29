@@ -9,34 +9,26 @@
                     <a href="#">Sản phẩm</a>
                     <div class="nav-lv2">
                         <ul class="nav-lv2-list">
+                            @foreach($types_grouped as $type_grouped)
                             <li class="nav-lv2-item">
-                                <a href="#">Xe lau dọn</a>
+                                <a href="{{route('type', ['type' => $type_grouped->type_id])}}">
+                                    {{$type_grouped->type_name}}
+                                </a>
+                                @if(isset($type_grouped->subtype_name))
                                 <div class="nav-lv3">
                                     <ul class="nav-lv3-list">
+                                        @foreach($types_included as $type_included)
                                         <li class="nav-lv3-item">
-                                            <a href="#">Xe điện đụng</a>
+                                            <a href="{{route('subtype', ['subtype' => $type_included->subtype_id])}}">
+                                                {{$type_included->subtype_name}}
+                                            </a>
                                         </li>
-                                        <li class="nav-lv3-item">
-                                            <a href="#">Xe cứu hỏa</a>
-                                        </li>
-                                        <li class="nav-lv3-item">
-                                            <a href="#">Xe lau nhà</a>
-                                        </li>
-                                        <li class="nav-lv3-item">
-                                            <a href="#">Xe lau sàn</a>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
+                                @endif
                             </li>
-                            <li class="nav-lv2-item">
-                                <a href="#">Máy giặt nổ</a>
-                            </li>
-                            <li class="nav-lv2-item">
-                                <a href="#">Bình thủy lợi</a>
-                            </li>
-                            <li class="nav-lv2-item">
-                                <a href="#">Bình nước cam</a>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </li>

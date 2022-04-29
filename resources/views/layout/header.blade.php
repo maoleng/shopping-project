@@ -192,19 +192,19 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                aria-expanded="false">
-                                    <span class="account-user-avatar">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                                    </span>
+                <span class="account-user-avatar">
+                    <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                </span>
                 <span>
-                                        <span class="account-user-name">{{session()->get('name')}}</span>
-                                        <span class="account-position">
-                                            @if (session()->get('level') === 0)
-                                                Nhân viên
-                                            @else
-                                                Sếp
-                                            @endif
-                                        </span>
-                                    </span>
+                    <span class="account-user-name">{{session()->get('name')}}</span>
+                    <span class="account-position">
+                        @if (session()->get('level') === 0)
+                            Nhân viên
+                        @else
+                            Sếp
+                        @endif
+                    </span>
+                </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
