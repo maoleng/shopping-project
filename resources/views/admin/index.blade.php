@@ -35,36 +35,42 @@
             <td class="table-action">
                 <a href="{{route('admins.edit', ['admin' => $admin->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
             </td>
-            @if($admin->active === 1)
-            <td class="table-action">
-                <form action="{{route('admins.lock', ['admin' => $admin->id])}}" method="post">
-                    @method('PUT')
-                    @csrf
-                    <button class="action-icon btn">
-                        <i class="mdi mdi-lock"></i>
-                    </button>
-                </form>
-            </td>
+
+            @if ($admin->level !== 1)
+                @if($admin->active === 1)
+                    <td class="table-action">
+                        <form action="{{route('admins.lock', ['admin' => $admin->id])}}" method="post">
+                            @method('PUT')
+                            @csrf
+                            <button class="action-icon btn">
+                                <i class="mdi mdi-lock"></i>
+                            </button>
+                        </form>
+                    </td>
+                @else
+                    <td class="table-action">
+                        <form action="{{route('admins.unlock', ['admin' => $admin->id])}}" method="post">
+                            @method('PUT')
+                            @csrf
+                            <button class="action-icon btn">
+                                <i class="mdi mdi-key"></i>
+                            </button>
+                        </form>
+                    </td>
+                @endif
+                <td class="table-action">
+                    <form action="{{route('admins.destroy', ['admin' => $admin->id])}}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button class="action-icon btn">
+                            <i class="mdi mdi-delete"></i>
+                        </button>
+                    </form>
+                </td>
             @else
-            <td class="table-action">
-                <form action="{{route('admins.unlock', ['admin' => $admin->id])}}" method="post">
-                    @method('PUT')
-                    @csrf
-                    <button class="action-icon btn">
-                        <i class="mdi mdi-key"></i>
-                    </button>
-                </form>
-            </td>
+                <td></td>
+                <td></td>
             @endif
-            <td class="table-action">
-                <form action="{{route('admins.destroy', ['admin' => $admin->id])}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <button class="action-icon btn">
-                        <i class="mdi mdi-delete"></i>
-                    </button>
-                </form>
-            </td>
         </tr>
         @endforeach
         </tbody>

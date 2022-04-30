@@ -6,6 +6,7 @@
     use App\Http\Controllers\ManufacturerController;
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\ProductController;
+    use App\Http\Controllers\ReceiptController;
     use App\Http\Controllers\SubtypeController;
     use App\Http\Controllers\TypeController;
     use App\Http\Middleware\CheckAdminLoginMiddleware;
@@ -24,7 +25,6 @@ Route::group(['prefix' => 'cart', 'as' => 'carts.'], function() {
     Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
     Route::post('/order', [OrderController::class, 'order'])->name('order');
-
 });
 
 
@@ -71,6 +71,13 @@ Route::group([
             Route::get('/edit/{subtype}', [SubtypeController::class, 'edit'])->name('edit');
             Route::delete('/{subtype}', [SubtypeController::class, 'destroy'])->name('destroy');
             Route::put('/update/{subtype}', [SubtypeController::class, 'update'])->name('update');
+        });
+
+        Route::group(['prefix' => 'receipt', 'as' => 'receipts.'], function() {
+            Route::get('/{status?}', [ReceiptController::class, 'index'])->name('index');
+            Route::get('/detail/{receipt}', [ReceiptController::class, 'show'])->name('show');
+            Route::put('/update/{receipt}/{status}', [ReceiptController::class, 'update'])->name('update');
+
         });
 
         Route::group([

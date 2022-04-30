@@ -36,7 +36,7 @@ class ProductController extends Controller
             ->leftJoin('images', 'images.product_id', '=', 'products.id')
             ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name', 'images.path')
             ->groupBy('images.product_id')
-            ->get();
+            ->paginate(20);
 
         return view('product.index', [
             'products' => $products,

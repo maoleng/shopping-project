@@ -63,7 +63,7 @@
 
         <li class="side-nav-item">
             <a href="javascript: void(0);" class="side-nav-link">
-                <i class="uil-store"></i>
+                <i class="uil-shopping-basket"></i>
                 <span> Sản phẩm </span>
                 <span class="menu-arrow"></span>
             </a>
@@ -73,6 +73,31 @@
                 </li>
                 <li>
                     <a href={{route('products.create')}}>Thêm</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="javascript: void(0);" class="side-nav-link">
+                <i class="uil-shopping-cart-alt"></i>
+                <span> Đơn hàng </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <ul class="side-nav-second-level mm-collapse" aria-expanded="false">
+                <li>
+                    <a href="{{route('receipts.index')}}">Tất cả</a>
+                </li>
+                <li>
+                    <a href={{route('receipts.index', ['status' => '0'])}}>Chưa xử lý</a>
+                </li>
+                <li>
+                    <a href={{route('receipts.index', ['status' => '1'])}}>Đang giao</a>
+                </li>
+                <li>
+                    <a href={{route('receipts.index', ['status' => '2'])}}>Giao thành công</a>
+                </li>
+                <li>
+                    <a href={{route('receipts.index', ['status' => '3'])}}>Đã hủy</a>
                 </li>
             </ul>
         </li>
