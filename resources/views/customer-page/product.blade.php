@@ -1,6 +1,7 @@
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 @extends('layout-customer.master')
 @section('content')
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
     <div class="home-product">
     <!-- Grid>Row>Column -->
@@ -44,12 +45,8 @@
             </div>
             @endforeach
 
-
         </div>
     </div>
-
-
-
 
 </div>
 {{ $products->links('vendor.pagination.custom') }}

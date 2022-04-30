@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar-container">
     <div class="header-navbar">
         <div class="navbar-con-PC">
             <ul class="navbar-list">

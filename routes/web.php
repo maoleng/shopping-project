@@ -12,11 +12,20 @@
     use App\Http\Middleware\CheckSuperAdminLoginMiddleware;
     use Illuminate\Support\Facades\Route;
 
-Route::get('/', [DashboardCustomer::class, 'index']);
+Route::get('/', [DashboardCustomer::class, 'index'])->name('index');
 Route::get('/type/{type}', [DashboardCustomer::class, 'indexWhereType'])->name('type');
 Route::get('/subtype/{subtype?}', [DashboardCustomer::class, 'indexWhereSubtype'])->name('subtype');
 Route::get('product/{product}', [DashboardCustomer::class, 'detailProduct'])->name('detail_product');
-Route::post('cart/add/{product}', [OrderController::class, 'addToCart'])->name('add_to_cart');
+
+Route::group(['prefix' => 'cart', 'as' => 'carts.'], function() {
+    Route::get('', [OrderController::class, 'index'])->name('index');
+    Route::post('/add/{product}', [OrderController::class, 'addToCart'])->name('add_to_cart');
+    Route::post('/modify_quantity/{type}/{id}', [OrderController::class, 'modifyQuantity'])->name('modify_quantity');
+    Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
+    Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+    Route::post('/order', [OrderController::class, 'order'])->name('order');
+
+});
 
 
 Route::get('admin/login', [AuthController::class, 'login'])->name('admins.login');

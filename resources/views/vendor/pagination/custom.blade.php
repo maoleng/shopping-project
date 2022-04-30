@@ -7,15 +7,11 @@
             <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">← Previous</a></li>
         @endif
 
-
-
         @foreach ($elements as $element)
 
             @if (is_string($element))
                 <li class="disabled"><span>{{ $element }}</span></li>
             @endif
-
-
 
             @if (is_array($element))
                 @foreach ($element as $page => $url)
@@ -27,8 +23,6 @@
                 @endforeach
             @endif
         @endforeach
-
-
 
         @if ($paginator->hasMorePages())
             <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">Next →</a></li>
