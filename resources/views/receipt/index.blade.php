@@ -82,4 +82,6 @@
 
         </tbody>
     </table>
+    {{ $receipts->links('vendor.pagination.bootstrap-5') }}
+
 @endsection

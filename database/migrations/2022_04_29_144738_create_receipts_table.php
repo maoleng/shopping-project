@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('address');
             $table->string('phone',15);
             $table->string('mail',250);
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->integer('total')->default(0);
             $table->timestamps();

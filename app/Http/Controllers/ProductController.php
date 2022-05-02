@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\product\StoreProductRequest;
 use App\Http\Requests\product\UpdateProductRequest;
+use App\Models\Config;
 use App\Models\Image;
 use App\Models\Manufacturer;
 use App\Models\Product;
@@ -38,8 +39,10 @@ class ProductController extends Controller
             ->groupBy('images.product_id')
             ->paginate(20);
 
+        $config = Config::all();
         return view('product.index', [
             'products' => $products,
+            'config' => $config,
         ]);
     }
 
@@ -53,9 +56,12 @@ class ProductController extends Controller
         $manufacturers = Manufacturer::all();
         $subtypes = Subtype::all();
 
+
+        $config = Config::all();
         return view('product.create', [
             'manufacturers' => $manufacturers,
             'subtypes' => $subtypes,
+            'config' => $config,
         ]);
     }
 
@@ -125,12 +131,14 @@ class ProductController extends Controller
             ->where('specification_products.product_id', $product->id)
             ->get();
 
+        $config = Config::all();
         return view('product.edit', [
             'product' => $product,
             'manufacturers' => $manufacturers,
             'subtypes' => $subtypes,
             'images' => $images,
-            'specifications' => $specifications
+            'specifications' => $specifications,
+            'config' => $config,
         ]);
     }
 
@@ -143,12 +151,14 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
+
         $data = $request->except(['_token', '_method', 'specification', 'images']);
+        $data['price_old'] = $product->price;
 
         if (isset($request->validated()['images'])) {
             $filename = "products/" . $product->id;
             Storage::disk('public')->deleteDirectory($filename);
-            $a = Image::query()->where('product_id', $product->id)->delete();
+            Image::query()->where('product_id', $product->id)->delete();
             foreach ($request->file('images') as $image) {
 
                 $path = Storage::disk('public')->putFile('products/' . $product->id, $image);

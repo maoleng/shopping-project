@@ -32,6 +32,7 @@
                 <a href="{{route('manufacturers.edit', ['manufacturer' => $manufacturer->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
             </td>
             <td class="table-action">
+                @if (session()->get('level') === 1)
                 <form action="{{route('manufacturers.destroy', ['manufacturer' => $manufacturer->id])}}" method="post">
                     @method('DELETE')
                     @csrf
@@ -39,10 +40,12 @@
                         <i class="mdi mdi-delete"></i>
                     </button>
                 </form>
+                @endif
             </td>
         </tr>
         @endforeach
         </tbody>
     </table>
+    {{ $manufacturers->links('vendor.pagination.bootstrap-5') }}
 
 @endsection

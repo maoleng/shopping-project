@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\manufacturer\StoreManufacturerRequest;
 use App\Http\Requests\manufacturer\UpdateManufacturerRequest;
+use App\Models\Config;
 use App\Models\Manufacturer;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -19,11 +20,14 @@ class ManufacturerController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
-        $manufacturers = Manufacturer::all();
+        $manufacturers = Manufacturer::query()->select('*')->paginate(20);
+
+        $config = Config::all();
         return view('manufacturer.index', [
-            'manufacturers' => $manufacturers
+            'manufacturers' => $manufacturers,
+            'config' => $config,
         ]);
     }
 
@@ -32,9 +36,12 @@ class ManufacturerController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View|Factory|Application
     {
-        return view('manufacturer.create');
+        $config = Config::all();
+        return view('manufacturer.create', [
+            'config' => $config,
+        ]);
     }
 
     /**
@@ -71,8 +78,10 @@ class ManufacturerController extends Controller
      */
     public function edit(Manufacturer $manufacturer): View|Factory|Application
     {
+        $config = Config::all();
         return view('manufacturer.edit',[
-            'manufacturer' => $manufacturer
+            'manufacturer' => $manufacturer,
+            'config' => $config,
         ]);
     }
 

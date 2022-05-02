@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\type\StoreTypeRequest;
 use App\Http\Requests\type\UpdateTypeRequest;
+use App\Models\Config;
 use App\Models\Subtype;
 use App\Models\Type;
 use Illuminate\Contracts\Foundation\Application;
@@ -21,8 +22,11 @@ class TypeController extends Controller
     public function index(): View|Factory|Application
     {
         $types = Type::all();
+
+        $config = Config::all();
         return view('type.index', [
-            'types'  => $types
+            'types'  => $types,
+            'config' => $config,
         ]);
     }
 
@@ -33,7 +37,10 @@ class TypeController extends Controller
      */
     public function create(): View|Factory|Application
     {
-        return view('type.create');
+        $config = Config::all();
+        return view('type.create', [
+            'config' => $config,
+        ]);
     }
 
     /**
@@ -67,8 +74,10 @@ class TypeController extends Controller
      */
     public function edit(Type $type): View|Factory|Application
     {
+        $config = Config::all();
         return view('type.edit', [
-            'type' => $type
+            'type' => $type,
+            'config' => $config,
         ]);
     }
 
@@ -101,9 +110,11 @@ class TypeController extends Controller
     {
         $subtypes = Subtype::query()->where('type_id', $type->id)->get();
 
+        $config = Config::all();
         return view('subtype.index', [
             'subtypes' => $subtypes,
-            'type_name' => $type->name
+            'type_name' => $type->name,
+            'config' => $config,
         ]);
     }
 }

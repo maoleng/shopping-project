@@ -229,18 +229,18 @@
     + Chứa các columns,giúp các columns nằm theo chiều ngang
     + Khi tổng kích thước columns vượt qua kích thước Row,cho Row xuống hàng
     + Loại bỏ khoảng thừa Gutters tạo ra ở 2 phía */
-.row {
+.row-grid {
     display: flex;
     flex-wrap: wrap;
 }
 /*>PC Medium resolution */
 @media (min-width: 1023px) {
-    .row {
+    .row-grid {
         margin-left: -12px;
         margin-right: -12px;
     }
 
-    .row.sm-gutter {
+    .row-grid.sm-gutter {
         margin-left: -5px;
         margin-right: -5px;
     }
@@ -250,7 +250,7 @@
         padding-right: 12px;
     }
 
-    .row.sm-gutter .col {
+    .row-grid.sm-gutter .col {
         padding-left: 5px;
         padding-right: 5px;
     }
@@ -386,7 +386,7 @@
 }
 /* >Tablet */
 @media (min-width: 740px) {
-    .row {
+    .row-grid {
         margin-left: -8px;
         margin-right: -8px;
     }
@@ -395,7 +395,7 @@
         padding-right: 8px;
     }
 }
-/* Bước 4:Tạo Column
+/* Bước 4:Tạo Column 
     Vai trò:Chứa các thành phần trong website*/
 .col {
     padding-left: 4px;
@@ -412,12 +412,12 @@
         width: 984px;
     }
 
-    .wide .row {
+    .wide .row-grid {
         margin-left: -12px;
         margin-right: -12px;
     }
 
-    .wide .row.sm-gutter {
+    .wide .row-grid.sm-gutter {
         margin-left: -5px;
         margin-right: -5px;
     }
@@ -427,7 +427,7 @@
         padding-right: 12px;
     }
 
-    .wide .row.sm-gutter .col {
+    .wide .row-grid.sm-gutter .col {
         padding-left: 5px;
         padding-right: 5px;
     }

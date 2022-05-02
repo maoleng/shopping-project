@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Http\Requests\StoreReceiptRequest;
+    use App\Models\Config;
     use App\Models\Image;
     use App\Models\Product;
     use App\Models\Receipt;
@@ -29,10 +30,12 @@
                 ->get();
             $cart = session()->get('cart');
 
+            $config = Config::all();
             return view('customer-page.cart', [
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
-                'carts' => $cart
+                'carts' => $cart,
+                'config' => $config,
             ]);
         }
 
@@ -88,6 +91,8 @@
 
         public function checkout(): Factory|View|Application
         {
+
+
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
                 ->select('subtypes.id as subtype_id', 'types.name as type_name', 'subtypes.name as subtype_name')
@@ -98,10 +103,12 @@
                 ->groupBy('types.id')
                 ->get();
 
+            $config = Config::all();
             return view('customer-page.checkout', [
                 'carts' => session()->get('cart'),
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
+                'config' => $config,
             ]);
         }
 

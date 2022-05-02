@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Image;
 use App\Models\Manufacturer;
 use App\Models\Product;
+use App\Models\Receipt;
+use App\Models\ReceiptDetail;
 use App\Models\Specification;
 use App\Models\SpecificationProduct;
 use App\Models\Subtype;
@@ -28,6 +30,7 @@ class DatabaseSeeder extends Seeder
          Image::factory(3000)->create();
          Specification::factory(10000)->create();
          SpecificationProduct::factory(10000)->create();
-
+         Receipt::factory(2500)->create();
+         ReceiptDetail::factory(10000)->create();
     }
 }

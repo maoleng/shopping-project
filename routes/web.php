@@ -14,8 +14,10 @@
     use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardCustomer::class, 'index'])->name('index');
-Route::get('/type/{type}', [DashboardCustomer::class, 'indexWhereType'])->name('type');
-Route::get('/subtype/{subtype?}', [DashboardCustomer::class, 'indexWhereSubtype'])->name('subtype');
+Route::get('/products', [DashboardCustomer::class, 'productWhereNothing'])->name('products');
+Route::get('/type/{type}', [DashboardCustomer::class, 'productWhereType'])->name('type');
+Route::get('/subtype/{subtype?}', [DashboardCustomer::class, 'productWhereSubtype'])->name('subtype');
+Route::get('/manufacturer/{manufacturer}', [DashboardCustomer::class, 'productWhereManufacturer'])->name('manufacturer');
 Route::get('product/{product}', [DashboardCustomer::class, 'detailProduct'])->name('detail_product');
 
 Route::group(['prefix' => 'cart', 'as' => 'carts.'], function() {
@@ -31,9 +33,12 @@ Route::group(['prefix' => 'cart', 'as' => 'carts.'], function() {
 Route::get('admin/login', [AuthController::class, 'login'])->name('admins.login');
 Route::post('admin/login', [AuthController::class, 'processLogin'])->name('admins.process_login');
 
+
 Route::group([
     'middleware' => CheckAdminLoginMiddleware::class
 ], function() {
+    Route::get('admin/logout', [AuthController::class, 'processLogout'])->name('admins.process_logout');
+    Route::get('admin/lock_screen', [AuthController::class, 'processLockScreen'])->name('admins.process_lock_screen');
 
     Route::group(['prefix' => 'admin'], function () {
 
@@ -80,6 +85,10 @@ Route::group([
 
         });
 
+
+
+        Route::get('/admin/edit/{admin?}', [AdminController::class, 'edit'])->name('admins.edit');
+        Route::put('/admin/update/{admin}', [AdminController::class, 'update'])->name('admins.update');
         Route::group([
             'middleware' => CheckSuperAdminLoginMiddleware::class
         ], function() {
@@ -87,9 +96,7 @@ Route::group([
                 Route::get('/', [AdminController::class, 'index'])->name('index');
                 Route::get('/create', [AdminController::class, 'create'])->name('create');
                 Route::post('/store', [AdminController::class, 'store'])->name('store');
-                Route::get('/edit/{admin}', [AdminController::class, 'edit'])->name('edit');
                 Route::delete('/{admin}', [AdminController::class, 'destroy'])->name('destroy');
-                Route::put('/update/{admin}', [AdminController::class, 'update'])->name('update');
                 Route::put('/lock/{admin}', [AdminController::class, 'lock'])->name('lock');
                 Route::put('/unlock/{admin}', [AdminController::class, 'unlock'])->name('unlock');
             });

@@ -24,6 +24,7 @@
                     <a href="{{route('subtypes.edit', ['subtype' => $subtype->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                 </td>
                 <td class="table-action">
+                    @if (session()->get('level') === 1)
                     <form action="{{route('subtypes.destroy', ['subtype' => $subtype->id])}}" method="post">
                         @method('DELETE')
                         @csrf
@@ -31,6 +32,7 @@
                             <i class="mdi mdi-delete"></i>
                         </button>
                     </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

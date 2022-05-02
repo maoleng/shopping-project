@@ -4,11 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
+    <title>{{$config[2]->value}}</title>
+    <link rel="shortcut icon" href="{{$config[0]->value}}">
     <link rel="stylesheet" href="{{asset('css/base.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/main.css')}}" />
     <link rel="stylesheet" href="{{asset('css/grid.css')}}" />
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
     <!-- Reset CSS -->
     <link
         rel="stylesheet"
@@ -39,6 +43,7 @@
 </head>
 <body>
 
+
 @include('layout-customer.header')
 
 <!-- START CONTENT -->
@@ -47,7 +52,6 @@
 
 @include('layout-customer.footer')
 
-@include('layout-customer.model')
 
 <script src="{{asset('js/layout-customer-script.js')}}"></script>
 

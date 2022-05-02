@@ -3,10 +3,10 @@
         <div class="navbar-con-PC">
             <ul class="navbar-list">
                 <li class="navbar-item">
-                    <a href="#">Trang chủ</a>
+                    <a href="{{route('index')}}">Trang chủ</a>
                 </li>
-                <li class="navbar-item">
-                    <a href="#">Sản phẩm</a>
+                <li class="navbar-item navbar-item-lv2">
+                    <a href="{{route('products')}}">Sản phẩm</a>
                     <div class="nav-lv2">
                         <ul class="nav-lv2-list">
                             @foreach($types_grouped as $type_grouped)
@@ -18,11 +18,11 @@
                                 <div class="nav-lv3">
                                     <ul class="nav-lv3-list">
                                         @foreach($types_included as $type_included)
-                                        <li class="nav-lv3-item">
-                                            <a href="{{route('subtype', ['subtype' => $type_included->subtype_id])}}">
-                                                {{$type_included->subtype_name}}
-                                            </a>
-                                        </li>
+                                            <li class="nav-lv3-item">
+                                                <a href="{{route('subtype', ['subtype' => $type_included->subtype_id])}}">
+                                                    {{$type_included->subtype_name}}
+                                                </a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -32,6 +32,7 @@
                         </ul>
                     </div>
                 </li>
+
                 <li class="navbar-item">
                     <a href="#">Liên hệ</a>
                 </li>
@@ -52,32 +53,24 @@
                         >Sản phẩm
                             <div class="nav-lv2">
                                 <ul class="nav-lv2-list">
+                                    @foreach($types_grouped as $type_grouped)
                                     <li class="nav-lv2-item">
-                                        <a href="#">Ví dụ 1</a>
+                                        <a href="{{route('type', ['type' => $type_grouped->type_id])}}">
+                                            {{$type_grouped->type_name}}
+                                        </a>
+                                        @if(isset($type_grouped->subtype_name))
                                         <ul class="nav-lv2-list">
+                                            @foreach($types_included as $type_included)
                                             <li class="nav-lv2-item">
-                                                <a href="#">Ví dụ 1</a>
+                                                <a href="{{route('subtype', ['subtype' => $type_included->subtype_id])}}">
+                                                    {{$type_included->subtype_name}}
+                                                </a>
                                             </li>
-                                            <li class="nav-lv2-item">
-                                                <a href="#">Ví dụ 2</a>
-                                            </li>
-                                            <li class="nav-lv2-item">
-                                                <a href="#">Ví dụ 3</a>
-                                            </li>
-                                            <li class="nav-lv2-item">
-                                                <a href="#">Ví dụ 4</a>
-                                            </li>
+                                            @endforeach
                                         </ul>
+                                        @endif
                                     </li>
-                                    <li class="nav-lv2-item">
-                                        <a href="#">Ví dụ 2</a>
-                                    </li>
-                                    <li class="nav-lv2-item">
-                                        <a href="#">Ví dụ 3</a>
-                                    </li>
-                                    <li class="nav-lv2-item">
-                                        <a href="#">Ví dụ 4</a>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </a>
@@ -89,7 +82,7 @@
             </div>
             <label class="btn-open-navbar" for="btnControl"></label>
         </div>
-        <div class="hot_line_number">Hotline:0902132145</div>
+        <div class="hot_line_number">Hotline:{{$config[6]->value}}</div>
     </div>
 </div>
 <div class="header-with-search">
@@ -118,26 +111,20 @@
         </div>
         <!-- Search option -->
         <div class="header-search-option">
-                    <span class="option-label"
-                    >Trong Shop
-                        <i class="fas fa-chevron-down icon-option"></i>
-                    </span>
+            <span class="option-label"
+            >Trong Shop
+                <i class="fas fa-chevron-down icon-option"></i>
+            </span>
         </div>
         <button class="header-search-btn">
             <i class="fas fa-search header-search-icon"></i>
         </button>
+
     </div>
-    <li class="header-item">
-        <a
-            href="#"
-            id="jsopenauth"
-            class="header-item-link bold seperate"
-        >Đăng ký</a
-        >
-    </li>
-    <li class="header-item">
-        <a href="#" id="jsopenlogin" class="header-item-link bold"
-        >Đăng nhập</a
-        >
-    </li>
+    <div class="header-cart">
+        <a href="{{route('carts.index')}}">
+            <i class="fas fa-shopping-cart header-cart-icon"></i>
+        </a>
+    </div>
+
 </div>

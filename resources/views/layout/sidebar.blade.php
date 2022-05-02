@@ -25,25 +25,25 @@
     <!--- Sidemenu -->
     <ul class="metismenu side-nav mm-show">
 
-        <li class="side-nav-title side-nav-item">Navigation</li>
+        <li class="side-nav-title side-nav-item">Tổng quan</li>
 
         <li class="side-nav-item mm-active">
-            <a href="javascript: void(0);" class="side-nav-link active">
+            <a href="https://github.com/" class="side-nav-link active">
                 <i class="uil-home-alt"></i>
-                <span class="badge badge-success float-right">2</span>
+{{--                <span class="badge badge-success float-right">2</span>--}}
                 <span> Trang chủ </span>
             </a>
-            <ul class="side-nav-second-level mm-collapse mm-show" aria-expanded="false">
-                <li>
-                    <a href="#">Đối ngoại</a>
-                </li>
-                <li class="mm-active">
-                    <a href="#" class="active">Nội bộ</a>
-                </li>
-            </ul>
+{{--            <ul class="side-nav-second-level mm-collapse mm-show" aria-expanded="false">--}}
+{{--                <li>--}}
+{{--                    <a href="#">Đối ngoại</a>--}}
+{{--                </li>--}}
+{{--                <li class="mm-active">--}}
+{{--                    <a href="#" class="active">Nội bộ</a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
         </li>
 
-        <li class="side-nav-title side-nav-item">Apps</li>
+        <li class="side-nav-title side-nav-item">Vùng nội bộ</li>
 
         <li class="side-nav-item">
             <a href="javascript: void(0);" class="side-nav-link">
@@ -141,7 +141,24 @@
 {{--        </li>--}}
 
 
-        <li class="side-nav-title side-nav-item mt-1">Components</li>
+        @if (session()->get('level') === 1)
+        <li class="side-nav-title side-nav-item mt-1">Vùng dành cho quản lý</li>
+
+        <li class="side-nav-item">
+            <a href="javascript: void(0);" class="side-nav-link">
+                <i class="uil-package"></i>
+                <span> Nhân viên </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <ul class="side-nav-second-level mm-collapse" aria-expanded="false">
+                <li>
+                    <a href={{route('admins.index')}}>Quản lý</a>
+                </li>
+                <li>
+                    <a href={{route('admins.create')}}>Thêm</a>
+                </li>
+            </ul>
+        </li>
 
         <li class="side-nav-item">
             <a href="apps-chat.html" class="side-nav-link">
@@ -149,13 +166,7 @@
                 <span> Lịch sử hoạt động </span>
             </a>
         </li>
-
-        <li class="side-nav-item">
-            <a href="{{route('admins.index')}}" class="side-nav-link">
-                <i class="uil-package"></i>
-                <span> Nhân viên </span>
-            </a>
-        </li>
+        @endif
     </ul>
     <div class="clearfix"></div>
 

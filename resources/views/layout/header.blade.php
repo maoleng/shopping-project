@@ -10,178 +10,181 @@
                 </form>
             </div>
         </li>
-        <li class="dropdown notification-list topbar-dropdown">
-            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="assets/images/flags/us.jpg" alt="user-image" class="mr-0 mr-sm-1" height="12">
-                <span class="align-middle d-none d-sm-inline-block">English</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu">
+            {{--Phần ngôn ngữ--}}
+{{--        <li class="dropdown notification-list topbar-dropdown">--}}
+{{--            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">--}}
+{{--                <img src="assets/images/flags/us.jpg" alt="user-image" class="mr-0 mr-sm-1" height="12">--}}
+{{--                <span class="align-middle d-none d-sm-inline-block">English</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>--}}
+{{--            </a>--}}
+{{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu">--}}
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
-                </a>
+{{--                <!-- item-->--}}
+{{--                <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                    <img src="assets/images/flags/germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>--}}
+{{--                </a>--}}
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
-                </a>
+{{--                <!-- item-->--}}
+{{--                <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                    <img src="assets/images/flags/italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>--}}
+{{--                </a>--}}
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
-                </a>
+{{--                <!-- item-->--}}
+{{--                <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                    <img src="assets/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>--}}
+{{--                </a>--}}
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
-                </a>
+{{--                <!-- item-->--}}
+{{--                <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                    <img src="assets/images/flags/russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>--}}
+{{--                </a>--}}
 
-            </div>
-        </li>
+{{--            </div>--}}
+{{--        </li>--}}
 
-        <li class="dropdown notification-list">
-            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="dripicons-bell noti-icon"></i>
-                <span class="noti-icon-badge"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
+            {{--Phần thông báo--}}
+{{--        <li class="dropdown notification-list">--}}
+{{--            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">--}}
+{{--                <i class="dripicons-bell noti-icon"></i>--}}
+{{--                <span class="noti-icon-badge"></span>--}}
+{{--            </a>--}}
+{{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">--}}
 
-                <!-- item-->
-                <div class="dropdown-item noti-title">
-                    <h5 class="m-0">
-                                            <span class="float-right">
-                                                <a href="javascript: void(0);" class="text-dark">
-                                                    <small>Clear All</small>
-                                                </a>
-                                            </span>Notification
-                    </h5>
-                </div>
+{{--                <!-- item-->--}}
+{{--                <div class="dropdown-item noti-title">--}}
+{{--                    <h5 class="m-0">--}}
+{{--                        <span class="float-right">--}}
+{{--                            <a href="javascript: void(0);" class="text-dark">--}}
+{{--                                <small>Clear All</small>--}}
+{{--                            </a>--}}
+{{--                        </span>Notification--}}
+{{--                    </h5>--}}
+{{--                </div>--}}
 
-                <div style="max-height: 230px;" data-simplebar>
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">Caleb Flakelar commented on Admin
-                            <small class="text-muted">1 min ago</small>
-                        </p>
-                    </a>
+{{--                <div style="max-height: 230px;" data-simplebar>--}}
+{{--                    <!-- item-->--}}
+{{--                    <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                        <div class="notify-icon bg-primary">--}}
+{{--                            <i class="mdi mdi-comment-account-outline"></i>--}}
+{{--                        </div>--}}
+{{--                        <p class="notify-details">Caleb Flakelar commented on Admin--}}
+{{--                            <small class="text-muted">1 min ago</small>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-info">
-                            <i class="mdi mdi-account-plus"></i>
-                        </div>
-                        <p class="notify-details">New user registered.
-                            <small class="text-muted">5 hours ago</small>
-                        </p>
-                    </a>
+{{--                    <!-- item-->--}}
+{{--                    <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                        <div class="notify-icon bg-info">--}}
+{{--                            <i class="mdi mdi-account-plus"></i>--}}
+{{--                        </div>--}}
+{{--                        <p class="notify-details">New user registered.--}}
+{{--                            <small class="text-muted">5 hours ago</small>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon">
-                            <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                        <p class="notify-details">Cristina Pride</p>
-                        <p class="text-muted mb-0 user-msg">
-                            <small>Hi, How are you? What about our next meeting</small>
-                        </p>
-                    </a>
+{{--                    <!-- item-->--}}
+{{--                    <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                        <div class="notify-icon">--}}
+{{--                            <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" /> </div>--}}
+{{--                        <p class="notify-details">Cristina Pride</p>--}}
+{{--                        <p class="text-muted mb-0 user-msg">--}}
+{{--                            <small>Hi, How are you? What about our next meeting</small>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">Caleb Flakelar commented on Admin
-                            <small class="text-muted">4 days ago</small>
-                        </p>
-                    </a>
+{{--                    <!-- item-->--}}
+{{--                    <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                        <div class="notify-icon bg-primary">--}}
+{{--                            <i class="mdi mdi-comment-account-outline"></i>--}}
+{{--                        </div>--}}
+{{--                        <p class="notify-details">Caleb Flakelar commented on Admin--}}
+{{--                            <small class="text-muted">4 days ago</small>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon">
-                            <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                        <p class="notify-details">Karen Robinson</p>
-                        <p class="text-muted mb-0 user-msg">
-                            <small>Wow ! this admin looks good and awesome design</small>
-                        </p>
-                    </a>
+{{--                    <!-- item-->--}}
+{{--                    <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                        <div class="notify-icon">--}}
+{{--                            <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>--}}
+{{--                        <p class="notify-details">Karen Robinson</p>--}}
+{{--                        <p class="text-muted mb-0 user-msg">--}}
+{{--                            <small>Wow ! this admin looks good and awesome design</small>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-info">
-                            <i class="mdi mdi-heart"></i>
-                        </div>
-                        <p class="notify-details">Carlos Crouch liked
-                            <b>Admin</b>
-                            <small class="text-muted">13 days ago</small>
-                        </p>
-                    </a>
-                </div>
+{{--                    <!-- item-->--}}
+{{--                    <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                        <div class="notify-icon bg-info">--}}
+{{--                            <i class="mdi mdi-heart"></i>--}}
+{{--                        </div>--}}
+{{--                        <p class="notify-details">Carlos Crouch liked--}}
+{{--                            <b>Admin</b>--}}
+{{--                            <small class="text-muted">13 days ago</small>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
 
-                <!-- All-->
-                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                    View All
-                </a>
+{{--                <!-- All-->--}}
+{{--                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">--}}
+{{--                    View All--}}
+{{--                </a>--}}
 
-            </div>
-        </li>
+{{--            </div>--}}
+{{--        </li>--}}
 
-        <li class="dropdown notification-list d-none d-sm-inline-block">
-            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="dripicons-view-apps noti-icon"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg p-0">
+            {{--Phần menu ứng dụng--}}
+{{--        <li class="dropdown notification-list d-none d-sm-inline-block">--}}
+{{--            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">--}}
+{{--                <i class="dripicons-view-apps noti-icon"></i>--}}
+{{--            </a>--}}
+{{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg p-0">--}}
 
-                <div class="p-2">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/slack.png" alt="slack">
-                                <span>Slack</span>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/github.png" alt="Github">
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/dribbble.png" alt="dribbble">
-                                <span>Dribbble</span>
-                            </a>
-                        </div>
-                    </div>
+{{--                <div class="p-2">--}}
+{{--                    <div class="row no-gutters">--}}
+{{--                        <div class="col">--}}
+{{--                            <a class="dropdown-icon-item" href="#">--}}
+{{--                                <img src="assets/images/brands/slack.png" alt="slack">--}}
+{{--                                <span>Slack</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col">--}}
+{{--                            <a class="dropdown-icon-item" href="#">--}}
+{{--                                <img src="assets/images/brands/github.png" alt="Github">--}}
+{{--                                <span>GitHub</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col">--}}
+{{--                            <a class="dropdown-icon-item" href="#">--}}
+{{--                                <img src="assets/images/brands/dribbble.png" alt="dribbble">--}}
+{{--                                <span>Dribbble</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
-                                <span>Bitbucket</span>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/dropbox.png" alt="dropbox">
-                                <span>Dropbox</span>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/g-suite.png" alt="G Suite">
-                                <span>G Suite</span>
-                            </a>
-                        </div>
+{{--                    <div class="row no-gutters">--}}
+{{--                        <div class="col">--}}
+{{--                            <a class="dropdown-icon-item" href="#">--}}
+{{--                                <img src="assets/images/brands/bitbucket.png" alt="bitbucket">--}}
+{{--                                <span>Bitbucket</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col">--}}
+{{--                            <a class="dropdown-icon-item" href="#">--}}
+{{--                                <img src="assets/images/brands/dropbox.png" alt="dropbox">--}}
+{{--                                <span>Dropbox</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col">--}}
+{{--                            <a class="dropdown-icon-item" href="#">--}}
+{{--                                <img src="assets/images/brands/g-suite.png" alt="G Suite">--}}
+{{--                                <span>G Suite</span>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
 
-                    </div>
-                </div>
+{{--                    </div>--}}
+{{--                </div>--}}
 
-            </div>
-        </li>
+{{--            </div>--}}
+{{--        </li>--}}
 
         <li class="notification-list">
             <a class="nav-link right-bar-toggle" href="javascript: void(0);">
@@ -193,7 +196,7 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                    <img src="https://vnmod.net/wp-content/uploads/2021/12/151220211639558112.png" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
                     <span class="account-user-name">{{session()->get('name')}}</span>
@@ -209,37 +212,37 @@
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
                 <div class=" dropdown-header noti-title">
-                    <h6 class="text-overflow m-0">Welcome !</h6>
+                    <h6 class="text-overflow m-0">Chào mừng !</h6>
                 </div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{route('admins.edit', ['admin' => session()->get('id')])}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle mr-1"></i>
-                    <span>My Account</span>
+                    <span>Tài khoản</span>
                 </a>
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-account-edit mr-1"></i>
-                    <span>Settings</span>
-                </a>
+{{--                <!-- item-->--}}
+{{--                <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                    <i class="mdi mdi-account-edit mr-1"></i>--}}
+{{--                    <span>Settings</span>--}}
+{{--                </a>--}}
+
+{{--                <!-- item-->--}}
+{{--                <a href="javascript:void(0);" class="dropdown-item notify-item">--}}
+{{--                    <i class="mdi mdi-lifebuoy mr-1"></i>--}}
+{{--                    <span>Support</span>--}}
+{{--                </a>--}}
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-lifebuoy mr-1"></i>
-                    <span>Support</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{route('admins.process_lock_screen')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-lock-outline mr-1"></i>
-                    <span>Lock Screen</span>
+                    <span>Khóa màn hình</span>
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{route('admins.process_logout')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-logout mr-1"></i>
-                    <span>Logout</span>
+                    <span>Đăng xuất</span>
                 </a>
 
             </div>
@@ -252,10 +255,10 @@
     <div class="app-search dropdown d-none d-lg-block">
         <form>
             <div class="input-group">
-                <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                <input type="text" class="form-control dropdown-toggle" placeholder="Tìm kiếm..." id="top-search">
                 <span class="mdi mdi-magnify search-icon"></span>
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
                 </div>
             </div>
 
@@ -264,7 +267,7 @@
         <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
             <!-- item-->
             <div class="dropdown-header noti-title">
-                <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>
+                <h5 class="text-overflow mb-2">Tìm thấy <span class="text-danger">17</span> kết quả</h5>
             </div>
 
             <!-- item-->

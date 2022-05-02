@@ -12,8 +12,7 @@
             <th>Chức vụ</th>
             <th>Gia nhập vào lúc</th>
             <th>Tình trạng</th>
-            <th>Xem</th>
-            <th>Sửa</th>
+            <th>Xem/Sửa</th>
             <th>Khóa/Mở khóa</th>
             <th>Xóa</th>
         </tr>
@@ -29,9 +28,6 @@
             <td>{{$admin->stringLevel}}</td>
             <td>{{$admin->created_at}}</td>
             <td>{{$admin->isActive}}</td>
-            <td class="table-action">
-                <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-            </td>
             <td class="table-action">
                 <a href="{{route('admins.edit', ['admin' => $admin->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
             </td>

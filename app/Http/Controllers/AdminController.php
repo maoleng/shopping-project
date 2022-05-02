@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\admin\StoreAdminRequest;
 use App\Http\Requests\admin\UpdateAdminRequest;
 use App\Models\Admin;
+use App\Models\Config;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class AdminController extends Controller
 {
@@ -20,8 +23,11 @@ class AdminController extends Controller
     public function index(): View|Factory|Application
     {
         $admins = Admin::all();
+
+        $config = Config::all();
         return view('admin.index', [
-            'admins' => $admins
+            'admins' => $admins,
+            'config' => $config,
         ]);
     }
 
@@ -32,7 +38,10 @@ class AdminController extends Controller
      */
     public function create(): View|Factory|Application
     {
-        return view('admin.create');
+        $config = Config::all();
+        return view('admin.create', [
+            'config' => $config,
+        ]);
     }
 
     /**
@@ -62,12 +71,25 @@ class AdminController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Admin  $admin
-     * @return Application|Factory|View
+     * @return Application|Factory|View|RedirectResponse
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function edit(Admin $admin): View|Factory|Application
+    public function edit(Admin $admin): Application|Factory|View|RedirectResponse
     {
+        $config = Config::all();
+        if (session()->get('level') === 1) {
+            return view('admin.edit', [
+                'admin' => $admin,
+                'config' => $config,
+            ]);
+        }
+        if (session()->get('id') !== $admin->id) {
+            return redirect()->back();
+        }
         return view('admin.edit', [
-            'admin' => $admin
+            'admin' => $admin,
+            'config' => $config,
         ]);
     }
 
@@ -81,7 +103,7 @@ class AdminController extends Controller
     public function update(UpdateAdminRequest $request, Admin $admin): RedirectResponse
     {
         Admin::query()->where('id', $admin->id)->update($request->validated());
-        return redirect()->route('admins.index');
+        return redirect()->back();
     }
 
     /**
@@ -101,7 +123,7 @@ class AdminController extends Controller
         Admin::query()->where('id', $admin->id)->update([
             'active' => 0
         ]);
-        return redirect()->route('admins.index');
+        return redirect()->back();
     }
 
     public function unlock(Admin $admin): RedirectResponse
@@ -109,6 +131,6 @@ class AdminController extends Controller
         Admin::query()->where('id', $admin->id)->update([
             'active' => 1
         ]);
-        return redirect()->route('admins.index');
+        return redirect()->back();
     }
 }

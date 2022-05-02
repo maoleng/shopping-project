@@ -4,6 +4,7 @@
 
     use App\Http\Requests\subtype\StoreSubtypeRequest;
     use App\Http\Requests\subtype\UpdateSubtypeRequest;
+    use App\Models\Config;
     use App\Models\Subtype;
     use App\Models\Type;
     use Illuminate\Contracts\Foundation\Application;
@@ -26,9 +27,11 @@
         {
             $subtypes = Subtype::query()->where('type_id', $type->id)->get();
 
+            $config = Config::all();
             return view('subtype.index', [
                 'subtypes' => $subtypes,
-                'type' => $type
+                'type' => $type,
+                'config' => $config,
             ]);
         }
 
@@ -39,8 +42,10 @@
          */
         public function create(Type $type)
         {
+            $config = Config::all();
             return view('subtype.create', [
-                'type' => $type
+                'type' => $type,
+                'config' => $config,
             ]);
         }
 
@@ -77,8 +82,10 @@
          */
         public function edit(Subtype $Subtype): View|Factory|Application
         {
+            $config = Config::all();
             return view('subtype.edit', [
-                'subtype' => $Subtype
+                'subtype' => $Subtype,
+                'config' => $config,
             ]);
         }
 

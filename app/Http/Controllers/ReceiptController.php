@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Config;
 use App\Models\Receipt;
 use App\Http\Requests\StoreReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
@@ -24,26 +25,30 @@ class ReceiptController extends Controller
         $receipts = [];
         $status = $request->status;
         if (empty($status)) {
-            $receipts = Receipt::all();
+            $receipts = Receipt::query()->select('*')->paginate(20);
 
         }
         switch ($status) {
             case '0':
-                $receipts = Receipt::query()->where('status', '0')->get();
+                $receipts = Receipt::query()->where('status', '0')->paginate(20);
                 break;
             case '1':
-                $receipts = Receipt::query()->where('status', '1')->get();
+                $receipts = Receipt::query()->where('status', '1')->paginate(20);
                 break;
             case '2':
-                $receipts = Receipt::query()->where('status', '2')->get();
+                $receipts = Receipt::query()->where('status', '2')->paginate(20);
                 break;
             case '3':
-                $receipts = Receipt::query()->where('status', '3')->get();
+                $receipts = Receipt::query()->where('status', '3')->paginate(20);
                 break;
         }
 
+
+        $config = Config::all();
+//dd($config);
         return view('receipt.index', [
             'receipts' => $receipts,
+            'config' => $config,
         ]);
     }
 
@@ -77,9 +82,12 @@ class ReceiptController extends Controller
     public function show(Receipt $receipt): View|Factory|Application
     {
         $receipt_details = ReceiptDetail::query()->where('receipt_id', $receipt->id)->get();
+
+        $config = Config::all();
         return view('receipt.cart_detail', [
             'receipt' => $receipt,
-            'receipt_details' => $receipt_details
+            'receipt_details' => $receipt_details,
+            'config' => $config,
         ]);
     }
 
