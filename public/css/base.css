@@ -5,6 +5,9 @@
     --primary-color: rgba(0, 0, 0, 0.9);
     --secondary-color: #939597;
 }
+a {
+    text-decoration: none;
+}
 .btn-order {
     min-width: 124px;
     height: 36px;
@@ -28,9 +31,6 @@
     background-color: #f5402d;
     color: white;
 }
-a {
-    text-decoration: none;
-}
 * {
     box-sizing: inherit;
     font-family: Arial, Helvetica, sans-serif;
@@ -41,9 +41,6 @@ html {
     line-height: 1.6rem;
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
-}
-.header-navbar {
-    display: flex;
 }
 /*Product -item*/
 .hidden {
@@ -80,8 +77,8 @@ html {
     overflow: hidden;
     display: block;
     /* Cách 1(Dùng cho 1 dòng) */
-    /* text-overflow: ellipsis;
-white-space: nowrap; */
+    /* text-overflow: ellipsis;	
+    white-space: nowrap; */
     /* Cách 2(Dùng cho nhiều dòng) */
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -196,11 +193,12 @@ white-space: nowrap; */
     border-width: 0 20px 9px;
     border-style: solid;
     border-color: transparent rgba(255, 216, 64, 0.94) transparent
-    rgba(255, 216, 64, 0.94);
+        rgba(255, 216, 64, 0.94);
     left: 0;
     bottom: -9px;
 }
 .header-navbar {
+    display: flex;
     align-items: center;
     width: 100%;
     height: 43px;
@@ -240,7 +238,7 @@ white-space: nowrap; */
     height: 40px;
     left: 0;
 }
-.navbar-item-lv2:hover {
+.navbar-item:hover {
     cursor: pointer;
 }
 .navbar-list > li > a {

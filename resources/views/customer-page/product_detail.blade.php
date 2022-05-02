@@ -46,7 +46,7 @@
 {{--                            {{$product->description}}--}}
 {{--                        </li>--}}
 {{--                    </ul>--}}
-                    </p>
+{{--                    </p>--}}
                     <p class="product-content-descrip">
                         <span>Thương hiệu:</span>
                         <a class="bold" href="#">{{$product->manufacturer_name}}</a>

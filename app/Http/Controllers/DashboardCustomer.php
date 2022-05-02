@@ -10,6 +10,7 @@
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Contracts\View\View;
+    use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Illuminate\Support\Facades\DB;
 
@@ -20,8 +21,10 @@
          *
          * @return Application|Factory|View
          */
-        public function index(Product $product): View|Factory|Application
+        public function index(Product $product, Request $request): View|Factory|Application
         {
+            $search = $request->get('q');
+
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
                 ->select('subtypes.id as subtype_id', 'types.name as type_name', 'subtypes.name as subtype_name')
@@ -46,20 +49,25 @@
                 'products_new' => $products_new,
                 'products_bought' => $products_bought,
                 'manufacturers' => $manufacturers,
+                'search' => $search,
                 'config' => $config,
             ]);
         }
 
-        public function productWhereNoThing(Product $product): Factory|View|Application
+        public function productWhereNoThing(Product $product, Request $request): Factory|View|Application
         {
+            $search = $request->get('q');
+
             $products = $product->query()
                 ->leftJoin('manufacturers','products.manufacturer_id', '=', 'manufacturers.id')
                 ->leftJoin('subtypes','products.subtype_id', '=', 'subtypes.id')
                 ->leftJoin('types','subtypes.type_id', '=', 'types.id')
                 ->leftJoin('images', 'images.product_id', '=', 'products.id')
                 ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name', 'images.path')
+                ->where('products.name', 'like', '%' . $search . '%')
                 ->groupBy('images.product_id')
                 ->paginate(20);
+            $products->appends(['q' => $search]);
 
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
@@ -76,12 +84,15 @@
                 'products' => $products,
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
+                'search' => $search,
                 'config' => $config,
             ]);
         }
 
-        public function productWhereType(Type $type, Product $product): Factory|View|Application
+        public function productWhereType(Type $type, Product $product, Request $request): Factory|View|Application
         {
+            $search = $request->get('q');
+
             $products = $product->query()
                 ->leftJoin('manufacturers','products.manufacturer_id', '=', 'manufacturers.id')
                 ->leftJoin('subtypes','products.subtype_id', '=', 'subtypes.id')
@@ -89,6 +100,7 @@
                 ->leftJoin('images', 'images.product_id', '=', 'products.id')
                 ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name', 'images.path')
                 ->where('types.id', $type->id)
+                ->where('products.name', 'like', '%' . $search . '%')
                 ->groupBy('images.product_id')
                 ->paginate(20);
 
@@ -107,12 +119,15 @@
                 'products' => $products,
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
+                'search' => $search,
                 'config' => $config,
             ]);
         }
 
-        public function productWhereSubtype(Subtype $subtype, Product $product): Factory|View|Application
+        public function productWhereSubtype(Subtype $subtype, Product $product, Request $request): Factory|View|Application
         {
+            $search = $request->get('q');
+
             $products = $product->query()
                 ->leftJoin('manufacturers','products.manufacturer_id', '=', 'manufacturers.id')
                 ->leftJoin('subtypes','products.subtype_id', '=', 'subtypes.id')
@@ -120,6 +135,7 @@
                 ->leftJoin('images', 'images.product_id', '=', 'products.id')
                 ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name', 'images.path')
                 ->where('subtypes.id', $subtype->id)
+                ->where('products.name', 'like', '%' . $search . '%')
                 ->groupBy('images.product_id')
                 ->paginate(20);
 
@@ -138,12 +154,15 @@
                 'products' => $products,
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
+                'search' => $search,
                 'config' => $config,
             ]);
         }
 
-        public function productWhereManufacturer(Manufacturer $manufacturer, Product $product): Factory|View|Application
+        public function productWhereManufacturer(Manufacturer $manufacturer, Product $product, Request $request): Factory|View|Application
         {
+            $search = $request->get('q');
+
             $products = $product->query()
                 ->leftJoin('manufacturers','products.manufacturer_id', '=', 'manufacturers.id')
                 ->leftJoin('subtypes','products.subtype_id', '=', 'subtypes.id')
@@ -151,6 +170,7 @@
                 ->leftJoin('images', 'images.product_id', '=', 'products.id')
                 ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name', 'images.path')
                 ->where('manufacturers.id', $manufacturer->id)
+                ->where('products.name', 'like', '%' . $search . '%')
                 ->groupBy('images.product_id')
                 ->paginate(20);
 
@@ -169,12 +189,15 @@
                 'products' => $products,
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
+                'search' => $search,
                 'config' => $config,
             ]);
         }
 
-        public function detailProduct(Product $product): Factory|View|Application
+        public function detailProduct(Product $product, Request $request): Factory|View|Application
         {
+            $search = $request->get('q');
+
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
                 ->select('subtypes.id as subtype_id', 'types.name as type_name', 'subtypes.name as subtype_name')
@@ -207,6 +230,7 @@
                 'types_grouped' => $types_grouped,
                 'product' => $product,
                 'specifications' => $specifications,
+                'search' => $search,
                 'config' => $config,
             ]);
         }

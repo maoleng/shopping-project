@@ -59,7 +59,10 @@ class ConfigSeeder extends Seeder
             'content' => 'order note',
             'value' => 'Lời dặn dò khi đặt hàng gì đó'
         ]);
-
+        Config::query()->insert([
+            'content' => 'about us youtube',
+            'value' => 'https://www.youtube.com/embed/aJgcTeWcNdc'
+        ]);
 
 
 

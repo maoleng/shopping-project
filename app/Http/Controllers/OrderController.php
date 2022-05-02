@@ -17,8 +17,10 @@
 
     class OrderController extends Controller
     {
-        public function index(): Factory|View|Application
+        public function index(Request $request): Factory|View|Application
         {
+            $search = $request->get('q');
+
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
                 ->select('subtypes.id as subtype_id', 'types.name as type_name', 'subtypes.name as subtype_name')
@@ -35,6 +37,7 @@
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
                 'carts' => $cart,
+                'search' => $search,
                 'config' => $config,
             ]);
         }
@@ -89,9 +92,10 @@
             return redirect()->back();
         }
 
-        public function checkout(): Factory|View|Application
+        public function checkout(Request $request): Factory|View|Application
         {
 
+            $search = $request->get('q');
 
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
@@ -108,6 +112,7 @@
                 'carts' => session()->get('cart'),
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
+                'search' => $search,
                 'config' => $config,
             ]);
         }

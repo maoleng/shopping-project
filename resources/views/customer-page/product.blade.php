@@ -5,7 +5,6 @@
 
 
     <div class="home-product">
-    <!-- Grid>Row>Column -->
     <div class="grid wide">
         <div class="row-grid">
 
@@ -44,9 +43,10 @@
                             </div>
                             {!! $product->SalePercentHTML !!}
                         </a>
-                        <form action="">
+                        <form action="{{route('carts.add_to_cart', ['product' => $product->id])}}" method="post">
+                            @csrf
                             <button class="btn-order btn-primary-order btn-product-order">
-                                Thêm vào giỏ hàng
+                                Thêm vào giỏ hàng
                             </button>
                         </form>
                     </div>
