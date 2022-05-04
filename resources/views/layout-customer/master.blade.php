@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{$config[2]->value}}</title>
-    <link rel="shortcut icon" href="{{$config[0]->value}}">
+    <title>{{$config[1]->value}}</title>
+    <link rel="shortcut icon" href="{{$config[10]->value}}">
     <link rel="stylesheet" href="{{asset('css/base.css')}}" />
     <link rel="stylesheet" href="{{asset('css/grid.css')}}" />
+    @yield('link_css')
     <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"

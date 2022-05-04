@@ -9,4 +9,8 @@ class Config extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'content', 'value'
+    ];
+
 }

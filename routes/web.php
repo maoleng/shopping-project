@@ -2,6 +2,7 @@
 
     use App\Http\Controllers\AdminController;
     use App\Http\Controllers\AuthController;
+    use App\Http\Controllers\ConfigController;
     use App\Http\Controllers\DashboardCustomer;
     use App\Http\Controllers\ManufacturerController;
     use App\Http\Controllers\OrderController;
@@ -18,7 +19,8 @@ Route::get('/products', [DashboardCustomer::class, 'productWhereNothing'])->name
 Route::get('/type/{type}', [DashboardCustomer::class, 'productWhereType'])->name('type');
 Route::get('/subtype/{subtype?}', [DashboardCustomer::class, 'productWhereSubtype'])->name('subtype');
 Route::get('/manufacturer/{manufacturer}', [DashboardCustomer::class, 'productWhereManufacturer'])->name('manufacturer');
-Route::get('product/{product}', [DashboardCustomer::class, 'detailProduct'])->name('detail_product');
+Route::get('/product/{product}', [DashboardCustomer::class, 'detailProduct'])->name('detail_product');
+Route::get('/contact', [DashboardCustomer::class, 'contact'])->name('contact');
 
 Route::group(['prefix' => 'cart', 'as' => 'carts.'], function() {
     Route::get('', [OrderController::class, 'index'])->name('index');
@@ -100,6 +102,13 @@ Route::group([
                 Route::put('/lock/{admin}', [AdminController::class, 'lock'])->name('lock');
                 Route::put('/unlock/{admin}', [AdminController::class, 'unlock'])->name('unlock');
             });
+
+            Route::group(['prefix' => 'config', 'as' => 'configs.'], function() {
+                Route::get('/', [ConfigController::class, 'index'])->name('index');
+                Route::get('/edit/{config}', [ConfigController::class, 'edit'])->name('edit');
+                Route::put('/update/{config}', [ConfigController::class, 'update'])->name('update');
+            });
+
         });
 
 

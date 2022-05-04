@@ -4,16 +4,16 @@
             <div class="row-grid">
                 <div class="item col l-3 m-4 c-12">
                     <h1 class="footer-heading-content">
-                        {{$config[2]->value}}
+                        {{$config[1]->value}}
                     </h1>
                     <p class="footer-content">
                         <ul>
                             <li>
-                                Địa chỉ: {{$config[3]->value}}
+                                Địa chỉ: {{$config[2]->value}}
                             </li>
                             <br>
                             <li>
-                                Email: {{$config[4]->value}}
+                                Email: {{$config[3]->value}}
                             </li>
                             <br>
                         </ul>
@@ -26,7 +26,7 @@
                     <p class="footer-content">
                     <ul>
                         <li>
-                            Hotline: {{$config[6]->value}}
+                            Hotline: {{$config[4]->value}}
                         </li>
                     </ul>
                     </p>

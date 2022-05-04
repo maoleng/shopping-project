@@ -11,7 +11,6 @@
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Contracts\View\View;
     use Illuminate\Http\Request;
-    use Illuminate\Http\Response;
     use Illuminate\Support\Facades\DB;
 
     class DashboardCustomer extends Controller
@@ -235,5 +234,27 @@
             ]);
         }
 
+        public function contact(Request $request): Application|View|Factory
+        {
+            $search = $request->get('q');
+            $config = Config::all();
+
+            $types_included = DB::table('types')
+                ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
+                ->select('subtypes.id as subtype_id', 'types.name as type_name', 'subtypes.name as subtype_name')
+                ->get();
+            $types_grouped = DB::table('types')
+                ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
+                ->select('types.id as type_id', 'types.name as type_name', 'subtypes.name as subtype_name')
+                ->groupBy('types.id')
+                ->get();
+
+            return view('customer-page.contact', [
+                'types_included' => $types_included,
+                'types_grouped' => $types_grouped,
+                'search' => $search,
+                'config' => $config,
+            ]);
+        }
 
     }

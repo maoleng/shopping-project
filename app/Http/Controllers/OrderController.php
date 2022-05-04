@@ -17,7 +17,7 @@
 
     class OrderController extends Controller
     {
-        public function index(Request $request): Factory|View|Application
+        public function index(Request $request): Application|Factory|View|RedirectResponse
         {
             $search = $request->get('q');
 
@@ -30,7 +30,10 @@
                 ->select('types.id as type_id', 'types.name as type_name', 'subtypes.name as subtype_name')
                 ->groupBy('types.id')
                 ->get();
-            $cart = session()->get('cart');
+            $cart = session()->get('cart') ?? '';
+            if (empty($cart)) {
+                return redirect()->route('index');
+            }
 
             $config = Config::all();
             return view('customer-page.cart', [

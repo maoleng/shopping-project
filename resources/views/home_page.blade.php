@@ -1,5 +1,7 @@
-<link rel="stylesheet" href="{{asset('css/main-home_page.css')}}" />
 @extends('layout-customer.master')
+@section('link_css')
+    <link rel="stylesheet" href="{{asset('css/main-home_page.css')}}" />
+@endsection
 @section('content')
 
 <div class="grid wide">
@@ -113,7 +115,7 @@
         </div>
         <div class="col l-6 m-6 c-12">
             <p class="content-place">
-                {{$config[1]->value}}
+                {{$config[0]->value}}
             </p>
         </div>
     </div>
@@ -129,47 +131,18 @@
     </div>
     <div class="main-item-list row-grid about-us">
         <div class="col l-12 m-12 c-12">
-                <span class="logo-producer">
-{{--                    @foreach($manufacturers as $manufacturer)--}}
-{{--                    <a href="#" class="logo-produce-place">--}}
-{{--                        <img--}}
-{{--                            src="{{$manufacturer->image}}"--}}
-{{--                            alt=""--}}
-{{--                            class="logo-produce-img"--}}
-{{--                        />--}}
-{{--                    </a>--}}
-{{--                    @endforeach--}}
-                    <a href="#" class="logo-produce-place">
-                        <img
-                            src="https://en.ygselect.com/design/en/escrow-grid_en.jpg"
-                            alt=""
-                            class="logo-produce-img"
-                        />
-                    </a>
-                    <a href="#" class="logo-produce-place">
-                        <img
-                            src="https://en.ygselect.com/design/en/2021_footer_ht_en.png"
-                            alt=""
-                            class="logo-produce-img"
-                            style="filter: grayscale(1); height: 50px"
-                        />
-                    </a>
-                    <a href="#" class="logo-produce-place">
-                        <img
-                            src="https://en.ygselect.com/design/en/footer_gaon2_en.jpg"
-                            alt=""
-                            class="logo-produce-img"
-                        />
-                    </a>
-                    <a href="#" class="logo-produce-place">
-                        <img
-                            src="https://en.ygselect.com/design/en/ok_gray_en.png"
-                            alt=""
-                            class="logo-producer-img"
-                            style="height: 50px"
-                        />
-                    </a>
-                </span>
+            <div class="row-grid brand-container">
+                @foreach($manufacturers as $manufacturer)
+                <div class="col l-2-4 m-6 c-12">
+                    <img
+                        src="{{$manufacturer->image}}"
+                        alt=""
+                        width="100%"
+                        height="100%"
+                    />
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>

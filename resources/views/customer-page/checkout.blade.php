@@ -1,84 +1,38 @@
-<link rel="stylesheet" href="{{asset('css/main-checkout.css')}}" />
 @extends('layout-customer.master')
+@section('link_css')
+    <link rel="stylesheet" href="{{asset('css/main-checkout.css')}}" />
+@endsection
 @section('content')
-
-{{--<table width="70%" border="1px solid black" >--}}
-{{--    <tr>--}}
-{{--        <th>#</th>--}}
-{{--        <th>Tên sản phẩm</th>--}}
-{{--        <th>Đơn giá</th>--}}
-{{--        <th>Số lượng</th>--}}
-{{--        <th>Tổng</th>--}}
-{{--    </tr>--}}
-
-{{--    @foreach($carts as $key => $cart)--}}
-{{--        <tr>--}}
-{{--            <td>{{$key}}</td>--}}
-{{--            <td>{{$cart['name']}}</td>--}}
-{{--            <td>{{$cart['price']}}</td>--}}
-{{--            <td>{{$cart['count']}}</td>--}}
-{{--            <td>--}}
-{{--                {{$cart['price'] * $cart['count']}} đồng--}}
-{{--            </td>--}}
-{{--        </tr>--}}
-{{--    @endforeach--}}
-{{--</table>--}}
-
-
-
-{{--<form action="{{route('carts.order')}}" method="post">--}}
-{{--    @csrf--}}
-
-{{--    Họ và tên người nhận--}}
-{{--    <input type="text" name="name">--}}
-{{--    <br>--}}
-{{--    Địa chỉ người nhận--}}
-{{--    <input type="text" name="address">--}}
-{{--    <br>--}}
-{{--    Số điện thoại người nhận--}}
-{{--    <input type="text" name="phone">--}}
-{{--    <br>--}}
-{{--    Email người nhận--}}
-{{--    <input type="text" name="mail">--}}
-{{--    <br>--}}
-{{--    Ghi chú--}}
-{{--    <input type="text" name="note">--}}
-{{--    <br>--}}
-
-{{--    <button>Đặt hàng</button>--}}
-
-
-{{--</form>--}}
-
-
 
 <div class="grid wide">
     <div class="checkout-container">
         <div class="row-grid">
-            <div class="col l-8 m-8 c-12">
+            <div class="col l-7 m-5 c-12">
                 <div class="cus-heading">
                     <h1>Thông tin khách hàng</h1>
                 </div>
                 <div class="customer-fields-list">
-                    <input
+                    <form action="{{route('carts.order')}}" method="post">
+                    @csrf
+                    <input name="name"
                         class="customer-fields-item"
                         placeholder="Họ và tên"
                         style="width: 80%; height: 40px; margin: 10px 0"
                         id="name-fields"
                     />
                     <div id="email_phonenum">
-                        <input
+                        <input name="mail"
                             class="customer-fields-item"
                             placeholder="Email"
                             style="
-                                        width: 50%;
-                                        height: 40px;
-                                        margin: 10px 0;
-                                        margin-right: 4px;
-                                    "
+                                width: 50%;
+                                height: 40px;
+                                margin: 10px 0;
+                                margin-right: 4px;
+                            "
                             id="email-fields"
                         />
-                        <input
+                        <input name="phone"
                             class="customer-fields-item"
                             placeholder="Số điện thoại"
                             style="
@@ -89,13 +43,13 @@
                             id="email-fields"
                         />
                     </div>
-                    <input
+                    <input name="address"
                         class="customer-fields-item"
                         placeholder="Địa chỉ"
                         style="width: 80%; height: 40px; margin: 10px 0"
                         id="address-fields"
                     />
-                    <input
+                    <input name="note"
                         class="customer-fields-item"
                         placeholder="Ghi chú"
                         style="width: 80%; height: 40px; margin: 10px 0"
@@ -108,89 +62,48 @@
                             </button>
                         </form>
                     </div>
+                </form>
                 </div>
             </div>
-            <div class="col l-4 m-4 c-12 order-summary">
+            <div class="col l-5 m-7 c-12 order-summary">
                 <h1 style="text-align: center">Tổng kết đơn hàng</h1>
+                @foreach($carts as $cart)
                 <div class="row-grid product-item">
                     <div class="col l-8 m-8 c-8">
                         <div class="row-grid">
-                            <div class="l-4 m-4 c-4">
+                            <div class="col l-4 m-4 c-4">
                                 <img
-                                    src="https://pm1.narvii.com/6814/2555e33c213284a5451ade4329793cfa2c78bba3v2_hq.jpg"
+                                    src="{{$cart['path']}}"
                                     alt=""
                                     width="70px"
                                     height="70px"
                                 />
                             </div>
-                            <div class="l-8 m-8 c-8">
+                            <div class="col l-8 m-8 c-8">
                                 <p class="name-pro">
-                                    SinB đẹp gái dễ thương hòa đồng
+                                    {{$cart['name']}}
                                 </p>
                                 <p class="price-content">
-                                    20.00$
+                                    {{$cart['price']}}
                                     <span class="multiply"> x</span>
-                                    <span class="multiply"> 5</span>
+                                    <span class="multiply"> {{$cart['count']}}</span>
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="col l-4 m-4 c-4">
-                        <p class="total-price">400.000.000VNĐ</p>
+                        <p class="total-price">{{$cart['price'] * $cart['count']}} đồng</p>
                     </div>
                 </div>
-                <div class="row-grid product-item">
-                    <div class="col l-8 m-8 c-8">
-                        <div class="row-grid">
-                            <div class="l-4 m-4 c-4">
-                                <img
-                                    src="https://pm1.narvii.com/6814/2555e33c213284a5451ade4329793cfa2c78bba3v2_hq.jpg"
-                                    alt=""
-                                    width="70px"
-                                    height="70px"
-                                />
-                            </div>
-                            <div class="l-8 m-8 c-8">
-                                <p class="name-pro">
-                                    SinB đẹp gái dễ thương hòa đồng
-                                </p>
-                                <p class="price-content">
-                                    20.00$
-                                    <span class="multiply"> x</span>
-                                    <span class="multiply"> 5</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-4 m-4 c-4">
-                        <p class="total-price">400.000.000VNĐ</p>
-                    </div>
-                </div>
-                <div class="row-grid product-item">
-                    <div class="col l-8 m-8 c-8">
-                        <div class="row-grid">
-                            <div class="l-4 m-4 c-4">
-                                <img
-                                    src="https://pm1.narvii.com/6814/2555e33c213284a5451ade4329793cfa2c78bba3v2_hq.jpg"
-                                    alt=""
-                                    width="70px"
-                                    height="70px"
-                                />
-                            </div>
-                            <div class="l-8 m-8 c-8">
-                                <p class="name-pro">
-                                    SinB đẹp gái dễ thương hòa đồng
-                                </p>
-                                <p class="price-content">
-                                    20.00$
-                                    <span class="multiply"> x</span>
-                                    <span class="multiply"> 5</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-4 m-4 c-4">
-                        <p class="total-price">400.000.000VNĐ</p>
+                @endforeach
+                <div class="row-grid total-all-price">
+                    <div class="col l-12 m-12 c-12">
+                        <p class="total-all-price-number">
+                            Tổng số tiền:
+                            <span class="total-number"
+                            >{{calculateMoney($carts)}} đồng</span
+                            >
+                        </p>
                     </div>
                 </div>
             </div>
@@ -198,5 +111,16 @@
     </div>
 </div>
 
-
 @endsection
+
+<?php
+function calculateMoney($carts): string
+{
+    $total = 0;
+    foreach ($carts as $cart) {
+        $each = $cart['price'] * $cart['count'];
+        $total += $each;
+    }
+    return $total;
+}
+?>

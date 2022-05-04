@@ -16,6 +16,6 @@
 
         public function showManufacturers(): Collection
         {
-            return $this->all();
+            return $this->query()->limit(5)->get();
         }
     }

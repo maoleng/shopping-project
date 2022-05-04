@@ -161,11 +161,19 @@
         </li>
 
         <li class="side-nav-item">
+            <a href="{{route('configs.index')}}" class="side-nav-link">
+                <i class="uil-copy-alt"></i>
+                <span> Cấu hình </span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
             <a href="apps-chat.html" class="side-nav-link">
                 <i class="uil-copy-alt"></i>
                 <span> Lịch sử hoạt động </span>
             </a>
         </li>
+
         @endif
     </ul>
     <div class="clearfix"></div>

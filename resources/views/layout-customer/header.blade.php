@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="navbar-item">
-                    <a href="#">Liên hệ</a>
+                    <a href="{{route('contact')}}">Liên hệ</a>
                 </li>
             </ul>
         </div>
@@ -82,20 +82,18 @@
             </div>
             <label class="btn-open-navbar" for="btnControl"></label>
         </div>
-        <div class="hot_line_number">Hotline:{{$config[6]->value}}</div>
+        <div class="hot_line_number">Hotline:{{$config[5]->value}}</div>
     </div>
 </div>
 <div class="header-with-search">
-    <div class="header-logo hide-on-tablet">
-        <a class="logo-link" href="#" style="fill: white">
-            <svg
-                viewBox="0 0 192 65"
-                class="shopee-svg-icon header-with-search__shopee-logo icon-shopee-logo"
-            >
-                <g fill-rule="evenodd">
-{{--                    <img src="{{$config[0]->value}}" alt="">--}}
-                </g>
-            </svg>
+    <div class="header-logo hide-on-tablet" style="text-align: center">
+        <a class="logo-link" href="#">
+            <img
+                src="{{$config[10]->value}}"
+                alt=""
+                width="70px"
+                height="70px"
+            />
         </a>
     </div>
     <div class="header-search">
