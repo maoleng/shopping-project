@@ -1,22 +1,22 @@
 <div class="left-side-menu mm-show">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+<a href="{{route('admins.dashboard')}}" class="logo text-center logo-light">
         <span class="logo-lg">
-        <img src="assets/images/logo.png" alt="" height="16">
+        <img src="{{$config[10]->value}}" alt="" height="80">
    </span>
    <span class="logo-sm">
-       <img src="assets/images/logo_sm.png" alt="" height="16">
+       <img src="{{$config[10]->value}}" alt="" height="16">
    </span>
 </a>
 
 <!-- LOGO -->
-<a href="index.html" class="logo text-center logo-dark">
+<a href="{{route('admins.dashboard')}}" class="logo text-center logo-dark">
   <span class="logo-lg">
-   <img src="assets/images/logo-dark.png" alt="" height="16">
+   <img src="{{$config[10]->value}}" alt="" height="16">
 </span>
 <span class="logo-sm">
-   <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+   <img src="{{$config[10]->value}}" alt="" height="16">
 </span>
 </a>
 
@@ -28,7 +28,7 @@
         <li class="side-nav-title side-nav-item">Tổng quan</li>
 
         <li class="side-nav-item mm-active">
-            <a href="https://github.com/" class="side-nav-link active">
+            <a href="{{route('admins.dashboard')}}" class="side-nav-link active">
                 <i class="uil-home-alt"></i>
 {{--                <span class="badge badge-success float-right">2</span>--}}
                 <span> Trang chủ </span>
@@ -103,10 +103,19 @@
         </li>
 
         <li class="side-nav-item">
-            <a href="{{route('types.index')}}" class="side-nav-link">
+            <a href="javascript: void(0);" class="side-nav-link">
                 <i class="uil-list-ui-alt"></i>
                 <span> Thể loại </span>
+                <span class="menu-arrow"></span>
             </a>
+            <ul class="side-nav-second-level mm-collapse" aria-expanded="false">
+                <li>
+                    <a href={{route('types.index')}}>Quản lý</a>
+                </li>
+                <li>
+                    <a href={{route('types.create')}}>Thêm</a>
+                </li>
+            </ul>
         </li>
 
         <li class="side-nav-item">
@@ -162,14 +171,14 @@
 
         <li class="side-nav-item">
             <a href="{{route('configs.index')}}" class="side-nav-link">
-                <i class="uil-copy-alt"></i>
+                <i class="dripicons-gear"></i>
                 <span> Cấu hình </span>
             </a>
         </li>
 
         <li class="side-nav-item">
             <a href="apps-chat.html" class="side-nav-link">
-                <i class="uil-copy-alt"></i>
+                <i class="mdi mdi-history"></i>
                 <span> Lịch sử hoạt động </span>
             </a>
         </li>

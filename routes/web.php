@@ -3,6 +3,7 @@
     use App\Http\Controllers\AdminController;
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\ConfigController;
+    use App\Http\Controllers\DashboardAdmin;
     use App\Http\Controllers\DashboardCustomer;
     use App\Http\Controllers\ManufacturerController;
     use App\Http\Controllers\OrderController;
@@ -43,6 +44,7 @@ Route::group([
     Route::get('admin/lock_screen', [AuthController::class, 'processLockScreen'])->name('admins.process_lock_screen');
 
     Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', [DashboardAdmin::class, 'index'])->name('admins.dashboard');
 
         Route::group(['prefix' => 'manufacturer', 'as' => 'manufacturers.'], function() {
             Route::get('/', [ManufacturerController::class, 'index'])->name('index');

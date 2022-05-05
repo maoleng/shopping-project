@@ -42,7 +42,7 @@
             $manufacturers = (new Manufacturer)->showManufacturers();
 
             $config = Config::all();
-            return view('home_page', [
+            return view('home_page-customer', [
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
                 'products_sale' => $products_sale,

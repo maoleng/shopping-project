@@ -92,8 +92,11 @@
         public function edit(Subtype $Subtype): View|Factory|Application
         {
             $config = Config::all();
+
+            $type = Type::query()->find($Subtype->type_id);
             return view('subtype.edit', [
                 'subtype' => $Subtype,
+                'type' => $type,
                 'config' => $config,
             ]);
         }

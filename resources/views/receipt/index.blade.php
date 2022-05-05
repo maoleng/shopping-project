@@ -13,6 +13,19 @@
     </div>
 @endsection
 
+@section('breadcrumb')
+    <div class="page-title-right">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light-lighten p-2 mb-0">
+                <li class="breadcrumb-item"><a href="{{route('admins.dashboard')}}"><i class="uil-home-alt"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('receipts.index')}}"><i class="uil-shopping-cart-alt"></i> Hóa đơn</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Quản lý</li>
+            </ol>
+        </nav>
+    </div>
+    <h4 class="page-title">Quản lý hóa đơn</h4>
+@endsection
+
 @section('content')
 
     <table class="table table-striped table-centered mb-0">

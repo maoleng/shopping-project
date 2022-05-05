@@ -1,4 +1,19 @@
 @extends('layout.master')
+
+@section('breadcrumb')
+    <div class="page-title-right">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light-lighten p-2 mb-0">
+                <li class="breadcrumb-item"><a href="{{route('admins.dashboard')}}"><i class="uil-home-alt"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('types.index')}}"><i class="uil-list-ui-alt"></i> Thể loại</a></li>
+                <li class="breadcrumb-item"><a href="{{route('subtypes.index', ['type' => $type->id])}}"><i class="uil-list-ui-alt"></i> {{$type->name}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Quản lý</li>
+            </ol>
+        </nav>
+    </div>
+    <h4 class="page-title">Quản lý danh mục</h4>
+@endsection
+
 @section('search')
     <div class="app-search dropdown d-none d-lg-block">
         <form>

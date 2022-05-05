@@ -13,9 +13,20 @@
     </div>
 @endsection
 
-@section('content')
+@section('breadcrumb')
+    <div class="page-title-right">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light-lighten p-2 mb-0">
+                <li class="breadcrumb-item"><a href="{{route('admins.dashboard')}}"><i class="uil-home-alt"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('products.index')}}"><i class="uil-shopping-basket"></i> Sản phẩm</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Quản lý</li>
+            </ol>
+        </nav>
+    </div>
+    <h4 class="page-title">Quản lý sản phẩm</h4>
+@endsection
 
-    <a href="{{route('products.create')}}">Thêm</a>
+@section('content')
 
     <table class="table table-striped table-centered mb-0">
         <thead>
