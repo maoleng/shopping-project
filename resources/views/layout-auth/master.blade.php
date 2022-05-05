@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>{{$config[2]->value}}</title>
+    <title>{{$config[1]->value}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{$config[0]->value}}">
+    <link rel="shortcut icon" href="{{$config[10]->value}}">
 
     <!-- App css -->
     <link href="{{asset('css/icons.min.css')}}" rel="stylesheet" type="text/css" />
