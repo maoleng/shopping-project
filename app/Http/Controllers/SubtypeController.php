@@ -11,6 +11,7 @@
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Contracts\View\View;
     use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Request;
     use Illuminate\Http\Response;
 
 //    use App\Http\Requests\StoreSubtypeRequest;
@@ -23,15 +24,23 @@
          *
          * @return Application|Factory|View
          */
-        public function index(Type $type): View|Factory|Application
+        public function index(Type $type, Request $request): View|Factory|Application
         {
-            $subtypes = Subtype::query()->where('type_id', $type->id)->get();
+            $search = $request->q;
+
+            $subtypes = Subtype::query()
+                ->where('name', 'like', '%'. $search . '%')
+                ->where('type_id', $type->id)
+                ->paginate(20);
+            $subtypes->appends(['q' => $search]);
+
 
             $config = Config::all();
             return view('subtype.index', [
                 'subtypes' => $subtypes,
                 'type' => $type,
                 'config' => $config,
+                'search' => $search
             ]);
         }
 

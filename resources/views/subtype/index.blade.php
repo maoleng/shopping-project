@@ -1,13 +1,26 @@
 @extends('layout.master')
-@section('content')
+@section('search')
+    <div class="app-search dropdown d-none d-lg-block">
+        <form>
+            <div class="input-group">
+                <input value="{{$search}}" name="q" type="search" class="form-control dropdown-toggle" placeholder="Tìm kiếm..." id="top-search">
+                <span class="mdi mdi-magnify search-icon"></span>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+@endsection
 
+@section('content')
 <a href="{{route('subtypes.create', ['type' => $type->id])}}">Thêm</a>
-<h1>Các loại sản phẩm thuộc thể loại {{$type->name}}</h1>
+<h1>Các danh mục thuộc thể loại {{$type->name}}</h1>
     <table class="table table-striped table-centered mb-0">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Tên loại sản phẩm</th>
+                <th>Tên danh mục</th>
                 <th>Sửa</th>
                 <th>Xóa</th>
             </tr>

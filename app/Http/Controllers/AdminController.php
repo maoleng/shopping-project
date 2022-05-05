@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -20,14 +21,18 @@ class AdminController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(Request $request): View|Factory|Application
     {
-        $admins = Admin::all();
+        $search = $request->q;
+        $admins = Admin::query()->where('name', 'like', '%'. $search . '%')
+            ->paginate(20);
+        $admins->appends(['q' => $search]);
 
         $config = Config::all();
         return view('admin.index', [
             'admins' => $admins,
             'config' => $config,
+            'search' => $search
         ]);
     }
 

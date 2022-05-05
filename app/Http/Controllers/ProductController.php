@@ -16,6 +16,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -28,21 +29,26 @@ class ProductController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(Request $request): View|Factory|Application
     {
+        $search = $request->q;
+
         $products = DB::table('products')
             ->leftJoin('manufacturers','products.manufacturer_id', '=', 'manufacturers.id')
             ->leftJoin('subtypes','products.subtype_id', '=', 'subtypes.id')
             ->leftJoin('types','subtypes.type_id', '=', 'types.id')
             ->leftJoin('images', 'images.product_id', '=', 'products.id')
+            ->where('products.name', 'like', '%'. $search . '%')
             ->select('products.*', 'manufacturers.name as manufacturer_name', 'subtypes.name as subtype_name', 'types.name as type_name', 'images.path')
             ->groupBy('images.product_id')
             ->paginate(20);
+        $products->appends(['q' => $search]);
 
         $config = Config::all();
         return view('product.index', [
             'products' => $products,
             'config' => $config,
+            'search' => $search
         ]);
     }
 

@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            <label for="example-select">Thể loại</label>
+            <label for="example-select">Danh mục</label>
             <select class="form-control" id="example-select" name="subtype_id">
                 @foreach($subtypes as $subtype)
                     <option value="{{$subtype->id}}">

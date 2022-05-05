@@ -1,4 +1,18 @@
 @extends('layout.master')
+@section('search')
+    <div class="app-search dropdown d-none d-lg-block">
+        <form>
+            <div class="input-group">
+                <input value="{{$search}}" name="q" type="search" class="form-control dropdown-toggle" placeholder="Tìm kiếm..." id="top-search">
+                <span class="mdi mdi-magnify search-icon"></span>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+@endsection
+
 @section('content')
 
     <a href="{{route('types.create')}}">Thêm</a>
@@ -8,8 +22,8 @@
             <tr>
                 <th>#</th>
                 <th>Tên thể loại</th>
-                <th>Xem thể loại con</th>
-                <th>Thêm thể loại con</th>
+                <th>Xem danh mục</th>
+                <th>Thêm danh mục</th>
                 <th>Sửa</th>
                 <th>Xóa</th>
             </tr>

@@ -22,33 +22,46 @@ class ReceiptController extends Controller
      */
     public function index(Request $request): View|Factory|Application
     {
+        $search = $request->q;
+
         $receipts = [];
         $status = $request->status;
         if (empty($status)) {
-            $receipts = Receipt::query()->select('*')->paginate(20);
+            $receipts = Receipt::query()
+                ->where('name', 'like', '%'. $search . '%')
+                ->select('*')->paginate(20);
 
         }
         switch ($status) {
             case '0':
-                $receipts = Receipt::query()->where('status', '0')->paginate(20);
+                $receipts = Receipt::query()->where('status', '0')
+                    ->where('name', 'like', '%'. $search . '%')
+                    ->paginate(20);
                 break;
             case '1':
-                $receipts = Receipt::query()->where('status', '1')->paginate(20);
+                $receipts = Receipt::query()->where('status', '1')
+                    ->where('name', 'like', '%'. $search . '%')
+                    ->paginate(20);
                 break;
             case '2':
-                $receipts = Receipt::query()->where('status', '2')->paginate(20);
+                $receipts = Receipt::query()->where('status', '2')
+                    ->where('name', 'like', '%'. $search . '%')
+                    ->paginate(20);
                 break;
             case '3':
-                $receipts = Receipt::query()->where('status', '3')->paginate(20);
+                $receipts = Receipt::query()->where('status', '3')
+                    ->where('name', 'like', '%'. $search . '%')
+                    ->paginate(20);
                 break;
         }
-
+        $receipts->appends(['q' => $search]);
 
         $config = Config::all();
-//dd($config);
+
         return view('receipt.index', [
             'receipts' => $receipts,
             'config' => $config,
+            'search' => $search
         ]);
     }
 

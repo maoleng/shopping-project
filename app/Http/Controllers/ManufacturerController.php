@@ -9,6 +9,7 @@ use App\Models\Manufacturer;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
@@ -20,14 +21,17 @@ class ManufacturerController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(Request $request): View|Factory|Application
     {
-        $manufacturers = Manufacturer::query()->select('*')->paginate(20);
+        $search = $request->q;
+        $manufacturers = Manufacturer::query()->where('name', 'like', '%'. $search . '%')->select('*')->paginate(20);
+        $manufacturers->appends(['q' => $search]);
 
         $config = Config::all();
         return view('manufacturer.index', [
             'manufacturers' => $manufacturers,
             'config' => $config,
+            'search' => $search
         ]);
     }
 

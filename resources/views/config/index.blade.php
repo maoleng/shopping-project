@@ -30,7 +30,7 @@
             <tbody>
             @for($i = 0; $i <= 8; $i++)
                 <tr>
-                    <td>{{$config[$i]->content}}</td>
+                    <td>{{$config[$i]->beautyContent}}</td>
                     <td>{{$config[$i]->value}}</td>
                     <td class="table-action">
                         <a href="{{route('configs.edit', ['config' => $config[$i]->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>

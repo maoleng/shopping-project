@@ -11,6 +11,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
@@ -19,14 +20,20 @@ class TypeController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(Request $request): View|Factory|Application
     {
-        $types = Type::all();
+        $search = $request->q;
+        $types = Type::query()
+            ->where('name', 'like', '%'. $search . '%')
+            ->paginate(20);
+        $types->appends(['q' => $search]);
+
 
         $config = Config::all();
         return view('type.index', [
             'types'  => $types,
             'config' => $config,
+            'search' => $search
         ]);
     }
 

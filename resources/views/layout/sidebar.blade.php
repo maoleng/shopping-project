@@ -105,7 +105,7 @@
         <li class="side-nav-item">
             <a href="{{route('types.index')}}" class="side-nav-link">
                 <i class="uil-list-ui-alt"></i>
-                <span> Danh mục </span>
+                <span> Thể loại </span>
             </a>
         </li>
 

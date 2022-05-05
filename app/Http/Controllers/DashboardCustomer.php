@@ -103,6 +103,7 @@
                 ->where('products.name', 'like', '%' . $search . '%')
                 ->groupBy('images.product_id')
                 ->paginate(20);
+            $products->appends(['q' => $search]);
 
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
@@ -138,6 +139,7 @@
                 ->where('products.name', 'like', '%' . $search . '%')
                 ->groupBy('images.product_id')
                 ->paginate(20);
+            $products->appends(['q' => $search]);
 
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')
@@ -173,6 +175,7 @@
                 ->where('products.name', 'like', '%' . $search . '%')
                 ->groupBy('images.product_id')
                 ->paginate(20);
+            $products->appends(['q' => $search]);
 
             $types_included = DB::table('types')
                 ->leftJoin('subtypes', 'subtypes.type_id', '=', 'types.id')

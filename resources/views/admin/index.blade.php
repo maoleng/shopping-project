@@ -1,4 +1,20 @@
 @extends('layout.master')
+@section('search')
+    <div class="app-search dropdown d-none d-lg-block">
+        <form>
+            <div class="input-group">
+                <input value="{{$search}}" name="q" type="search" class="form-control dropdown-toggle" placeholder="Tìm kiếm..." id="top-search">
+                <span class="mdi mdi-magnify search-icon"></span>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+@endsection
+
+
+
 @section('content')
 
     <a href="{{route('admins.create')}}">
