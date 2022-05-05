@@ -107,5 +107,16 @@ class Product extends Model
             ->get();
     }
 
+    public function checkCurrentQuantity($inputQuantity, $product_id): bool
+    {
+        $current_quantity = $this->query()->where('id', $product_id)->first()->quantity;
+        if ($inputQuantity > $current_quantity) {
+            return false;
+        }
+        return true;
+
+    }
+
+
 
 }

@@ -47,6 +47,11 @@
 
         public function addToCart(Product $product): RedirectResponse
         {
+            $check = (new Product)->checkCurrentQuantity(1, $product->id);
+            if ($check === false) {
+                return redirect()->back();
+            }
+
             $image = Image::query()->where('product_id', $product->id)->first();
             $cart = session()->get('cart');
 
@@ -65,7 +70,6 @@
 
         public function modifyQuantity(Request $request): RedirectResponse
         {
-
             $cart = session()->get('cart');
             $type = $request->type;
             $id = $request->id;
@@ -77,6 +81,11 @@
                     $cart[$id]['count']--;
                 }
             } else if ($type === 'increase') {
+                // validate quantity
+                $check = (new Product)->checkCurrentQuantity(1, $id );
+                if ($check === false) {
+                    return redirect()->back();
+                }
                 $cart[$id]['count']++;
             }
             session()->put('cart', $cart);
@@ -123,8 +132,20 @@
         public function order(StoreReceiptRequest $receipt): RedirectResponse
         {
 
+
+
             $total = 0;
             $carts = session()->get('cart');
+
+            // validate quantity
+            foreach ($carts as $key => $cart) {
+                $check = (new Product)->checkCurrentQuantity($cart['count'], $key);
+                if ($check === false) {
+                    return redirect()->back();
+                }
+            }
+
+
             foreach ($carts as $cart) {
                 $each = $cart['price'] * $cart['count'];
                 $total += $each;
@@ -144,7 +165,14 @@
                     'price' => $cart['price'],
                     'quantity' => $cart['count']
                 ]);
+
+                $current_quantity = Product::query()->where('id', $key)->first()->quantity;
+                Product::query()->where('id', $key)->update([
+                    'quantity' => $current_quantity - $cart['count']
+                ]);
             }
+
+
 
             session()->forget('cart');
             return redirect()->route('index');
