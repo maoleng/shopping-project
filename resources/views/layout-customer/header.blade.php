@@ -108,13 +108,6 @@
             </form>
             <!-- Search history -->
         </div>
-        <!-- Search option -->
-        <div class="header-search-option">
-            <span class="option-label"
-            >Trong Shop
-                <i class="fas fa-chevron-down icon-option"></i>
-            </span>
-        </div>
         <button class="header-search-btn">
             <i class="fas fa-search header-search-icon"></i>
         </button>

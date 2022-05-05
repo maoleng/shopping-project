@@ -18,7 +18,7 @@
     <div class="main-item-list row-grid">
 
         @foreach($products_sale as $product_sale)
-        <a href="{{route('detail_product', ['product' => $product_sale->id])}}" class="main-item l-2-4 m-6 c-6">
+        <a href="{{route('detail_product', ['product' => $product_sale->id])}}" class="main-item col l-2-4 m-6 c-6">
             <div class="item-main-img">
                 <img
                     src="{{$product_sale->path}}"
@@ -37,13 +37,13 @@
         @endforeach
     </div>
     <div class="row-grid main-intro">
-        <div class="l-12 m-12 c-12">
+        <div class="col l-12 m-12 c-12">
             <p class="main-intro-heading">#Sản phẩm nổi bật</p>
         </div>
     </div>
     <div class="main-item-list row-grid">
         @foreach($products_new as $product_new)
-        <a href="{{route('detail_product', ['product' => $product_new->id])}}" class="main-item l-2-4 m-6 c-6">
+        <a href="{{route('detail_product', ['product' => $product_new->id])}}" class="main-item col l-2-4 m-6 c-6">
             <div class="item-main-img">
                 <img
                     src="{{$product_new->path}}"
@@ -71,7 +71,7 @@
     </div>
     <div class="main-item-list row-grid">
         @foreach($products_bought as $product_bought)
-        <a href="{{route('detail_product', ['product' => $product_bought->id])}}" class="main-item l-2-4 m-6 c-6">
+        <a href="{{route('detail_product', ['product' => $product_bought->id])}}" class="col main-item l-2-4 m-6 c-6">
             <div class="item-main-img">
                 <img
                     src="{{$product_bought->path}}"

@@ -329,11 +329,3 @@
 .btn-product-order {
     margin-top: 20px;
 }
-.hot_line_number {
-    margin-left: 50%;
-}
-@media (max-width: 739px) {
-    .hot_line_number {
-        margin-left: 70%;
-    }
-}

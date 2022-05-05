@@ -210,10 +210,27 @@ html {
     color: var(--white-color);
     font-size: 1.8rem;
     font-weight: 500;
+    margin-left: 50%;
+}
+@media (max-width: 739px) {
+    .hot_line_number {
+        margin-left: 40%;
+    }
 }
 .navbar-con-PC {
-    width: 30%;
+    flex: 0 0 30%;
+    max-width: 30%;
     margin-left: 5%;
+}
+@media (min-width: 740px) and (max-width: 1023px) {
+    .navbar-con-PC {
+        flex: 0 0 40%;
+        max-width: 40%;
+        margin-left: 5%;
+    }
+    .hot_line_number {
+        margin-left: 30%;
+    }
 }
 .navbar-list {
     display: flex;
@@ -268,7 +285,7 @@ footer {
 }
 .navbar-item .nav-lv2 {
     display: none;
-    width: 180px;
+    width: 250px;
     position: absolute;
     z-index: 1;
     top: 33px;
@@ -282,7 +299,7 @@ footer {
     width: 300px;
     position: absolute;
     z-index: 1;
-    left: calc(300px - 138px);
+    left: calc(300px - 78px);
     top: -15px;
     background-color: var(--primary-color);
 }
@@ -572,4 +589,7 @@ footer {
 }
 .footer-wrap {
     margin-top: 20px;
+}
+form {
+    height: 100%;
 }

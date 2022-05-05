@@ -1,9 +1,6 @@
 a {
     color: black;
 }
-.hot_line_number {
-    margin-left: 60%;
-}
 .mobile-category-item:nth-of-type(3n + 1) .mobile-category-link {
     background-color: #87afd8;
 }
