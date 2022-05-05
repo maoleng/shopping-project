@@ -1,7 +1,10 @@
-<link rel="stylesheet" href="{{asset('css/main-product.css')}}" />
-
 @extends('layout-customer.master')
+@section('link_css')
+    <link rel="stylesheet" href="{{asset('css/main-product.css')}}" />
+@endsection
 @section('content')
+
+
 
 
     <div class="home-product">

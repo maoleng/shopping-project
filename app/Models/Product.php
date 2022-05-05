@@ -31,7 +31,7 @@ class Product extends Model
 
     public function getBeautyOldPriceAttribute(): string
     {
-        if ($this->price_old === 0) {
+        if ($this->price_old === 1) {
             return '';
         }
         return number_format($this->price_old) . ' Đồng';
@@ -39,7 +39,7 @@ class Product extends Model
 
     public function getSalePercentHTMLAttribute()
     {
-        if ($this->price_old === 0) {
+        if ($this->price_old === 1) {
             return '';
         }
 
@@ -51,6 +51,17 @@ class Product extends Model
                 <span class="sale-label">GIẢM</span>
             </div>
         ';
+    }
+
+    public function getSalePercentAttribute(): string
+    {
+        return round(($this->price_old - $this->price) / $this->price_old, 2) * 100 . '%';
+    }
+
+    public function getEmbedYoutubeLinkAttribute(): string
+    {
+        $video_id = explode("=", $this->video)[1];
+        return 'https://www.youtube.com/embed/' . $video_id;
     }
 
     public function mostSaleProduct(): Collection|array

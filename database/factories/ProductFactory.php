@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+require_once 'vendor/autoload.php';
 
 use App\Models\Manufacturer;
 use App\Models\Subtype;
@@ -18,6 +19,9 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new \Faker\Provider\Youtube($faker));
+
         return [
             'name' => $this->faker->name,
             'price' => $this->faker->numberBetween($min = 1000, $max = 9000),
@@ -25,7 +29,7 @@ class ProductFactory extends Factory
             'origin' => $this->faker->country,
             'insurance' => $this->faker->numberBetween($min = 1, $max = 24) . 'months',
             'quantity' => $this->faker->numberBetween($min = 20, $max = 100),
-            'video' => $this->faker->url,
+            'video' => $faker->youtubeUri(),
             'subtype_id' => Subtype::query()->inRandomOrder()->value('id'),
             'manufacturer_id' => Manufacturer::query()->inRandomOrder()->value('id'),
 

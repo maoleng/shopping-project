@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Models\Config;
+    use App\Models\Image;
     use App\Models\Manufacturer;
     use App\Models\Product;
     use App\Models\Subtype;
@@ -218,6 +219,8 @@
                 ->groupBy('images.product_id')
                 ->first();
 
+            $images = Image::query()->where('product_id', $product->id)->get();
+
             $specifications = DB::table('specification_products')
                 ->where('specification_products.product_id', $product->id)
                 ->leftJoin('specifications', 'specifications.id', '=', 'specification_products.specification_id')
@@ -228,6 +231,7 @@
                 'types_included' => $types_included,
                 'types_grouped' => $types_grouped,
                 'product' => $product,
+                'images' => $images,
                 'specifications' => $specifications,
                 'search' => $search,
                 'config' => $config,

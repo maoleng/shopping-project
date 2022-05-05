@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 250);
             $table->integer('price');
-            $table->integer('price_old')->default(0);
+            $table->integer('price_old')->default(1);
             $table->text('description');
             $table->string('origin', 250);
             $table->string('insurance', 250);
