@@ -34,3 +34,6 @@
     float: right;
     margin-right: 12px;
 }
+form {
+    height: 100%;
+}
