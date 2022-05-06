@@ -35,5 +35,5 @@
     margin-right: 12px;
 }
 form {
-    height: 100%;
+    height: inherit !important;
 }
