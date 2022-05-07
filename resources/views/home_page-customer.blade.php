@@ -1,10 +1,57 @@
 @extends('layout-customer.master')
 @section('link_css')
     <link rel="stylesheet" href="{{asset('css/main-home_page.css')}}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 @endsection
 @section('content')
 
 <div class="grid wide">
+    <!-- Popular Section -->
+    <section class="py-5 border-bottom" id="features">
+        <div class="row-grid main-intro">
+            <div class="l-12 m-12 c-12">
+                <p class="main-intro-heading">
+                    #Ở đây chúng tôi có gì
+                    <span class="icon main-heading-icon">
+                        <i class="bi bi-star-fill" style="color:#8B8000"></i>
+                    </span>
+                </p>
+            </div>
+        </div>
+            <div class="container popular-container">
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 icon-place "><i class="bi bi-lightning-fill"></i></div>
+                        <h2 class=" feature-heading">Giao hàng nhanh gọn</h2>
+                        <p>Hàng luôn đến tay khách hàng một cách nhanh chóng</p>
+                        <a class="text-decoration-none" href="#!">
+                        Xem sản phẩm ngay chờ chi
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 icon-place"><i class="bi bi-award-fill"></i>
+</div>
+                        <h2 class=" feature-heading">Hàng 100% chính hãng</h2>
+                        <p>Hàng luôn đảm bảo chất lượng một cách tối đa</p>
+                        <a class="text-decoration-none" href="#!">
+                        Xem sản phẩm ngay chờ chi
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 icon-place"><i class="bi bi-tags-fill"></i></div>
+                        <h2 class=" feature-heading">Giá cả phải chăng</h2>
+                        <p>Giá cả luôn sẵn sàng làm cho khách hàng phải hài lòng</p>
+                        <a class="text-decoration-none" href="#!">
+                            Xem sản phẩm ngay chờ chi
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- Product section -->
     <div class="row-grid main-intro">
         <div class="l-12 m-12 c-12">
             <p class="main-intro-heading">
@@ -100,7 +147,7 @@
         </div>
     </div>
     <div class="main-item-list row-grid about-us">
-        <div class="col l-6 m-6 c-12">
+        <div class="col l-12 m-12 c-12">
             <div class="video-place">
                 <iframe
                     width="560"
@@ -113,7 +160,7 @@
                 ></iframe>
             </div>
         </div>
-        <div class="col l-6 m-6 c-12">
+        <div class="col l-12 m-12 c-12">
             <p class="content-place">
                 {{$config[0]->value}}
             </p>
