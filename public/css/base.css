@@ -8,6 +8,9 @@
 a {
     text-decoration: none;
 }
+a:hover {
+    text-decoration: none !important;
+}
 .btn-order {
     min-width: 124px;
     height: 36px;

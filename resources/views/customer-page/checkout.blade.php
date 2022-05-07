@@ -21,22 +21,11 @@
                         id="name-fields"
                     />
                     <div id="email_phonenum">
-                        <input name="mail"
-                            class="customer-fields-item"
-                            placeholder="Email"
-                            style="
-                                width: 50%;
-                                height: 40px;
-                                margin: 10px 0;
-                                margin-right: 4px;
-                            "
-                            id="email-fields"
-                        />
                         <input name="phone"
                             class="customer-fields-item"
                             placeholder="Số điện thoại"
                             style="
-                                        width: 30%;
+                                        width: 80%;
                                         height: 40px;
                                         margin: 10px 0;
                                     "

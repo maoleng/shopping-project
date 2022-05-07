@@ -141,7 +141,7 @@
             <p class="main-intro-heading">
                 #Về chúng tôi
                 <span class="main-intro-des">
-
+                {{$config[0]->value}}
                 </span>
             </p>
         </div>
@@ -159,11 +159,6 @@
                     allowfullscreen
                 ></iframe>
             </div>
-        </div>
-        <div class="col l-12 m-12 c-12">
-            <p class="content-place">
-                {{$config[0]->value}}
-            </p>
         </div>
     </div>
     <div class="row-grid main-intro">
