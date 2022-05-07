@@ -15,7 +15,7 @@
           <!-- Grid column -->
           <div class="col l-5 m-3 c-12">
             <!-- Content -->
-            <h6 class="text-uppercase fw-bold content-heading">Công ty trách nhiệm hữu hạn 1 thành viên</h6>
+            <h6 class="text-uppercase fw-bold content-heading">{{$config[1]->value}}</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
@@ -80,10 +80,10 @@
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
-        <p><i class="fas fa-home mr-3"></i> 184 Lê Đại Hành Phường 15 Quận 11</p>
-            <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-            <p><i class="fas fa-phone mr-3"></i> 090.321.214.698</p>
-            <p><i class="fas fa-print mr-3"></i>090.321.214.698</p>
+        <p><i class="fas fa-home mr-3"></i> {{$config[2]->value}}</p>
+            <p><i class="fas fa-envelope mr-3"></i> {{$config[3]->value}}</p>
+            <p><i class="fas fa-phone mr-3"></i> {{$config[4]->value}}</p>
+            <p><i class="fas fa-print mr-3"></i> {{$config[5]->value}}</p>
           </div>
           <!-- Grid column -->
         </div>
