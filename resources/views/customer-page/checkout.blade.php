@@ -84,9 +84,9 @@
                                     {{$cart['name']}}
                                 </p>
                                 <p class="price-content">
-                                    {{$cart['price']}}
+                                    {{$cart['price']}} đồng
                                     <span class="multiply"> x</span>
-                                    <span class="multiply"> {{$cart['count']}}</span>
+                                    <span class="multiply"> {{$cart['count']}} cái</span>
                                 </p>
                             </div>
                         </div>
