@@ -33,9 +33,6 @@ class StoreReceiptRequest extends FormRequest
             'phone' => [
                 'required'
             ],
-            'mail' => [
-                'required'
-            ],
             'note' => [
                 'required'
             ],
