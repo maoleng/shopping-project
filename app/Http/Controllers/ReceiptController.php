@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Config;
 use App\Models\Receipt;
 use App\Http\Requests\StoreReceiptRequest;
@@ -126,6 +127,19 @@ class ReceiptController extends Controller
     {
         $status = $request->status;
         Receipt::query()->where('id', $receipt->id)->update(['status' => $status]);
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('hóa đơn')
+            ->event('sửa')
+            ->causedBy($user)
+            ->performedOn($receipt)
+            ->withProperties([
+                'subject_name' => 'Hóa đơn số ' . $receipt->id,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('cập nhật hóa đơn');
+
         return redirect()->back();
     }
 

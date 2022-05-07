@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Config;
 use App\Http\Requests\StoreConfigRequest;
 use App\Http\Requests\UpdateConfigRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
@@ -77,9 +79,9 @@ class ConfigController extends Controller
      *
      * @param  \App\Http\Requests\UpdateConfigRequest  $request
      * @param  Config  $config
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Config $config)
+    public function update(Request $request, Config $config): RedirectResponse
     {
         $config_id = $config->id;
 
@@ -94,6 +96,17 @@ class ConfigController extends Controller
         } else {
             $value = $request->all()['value'];
         }
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('cấu hình')
+            ->event('sửa')
+            ->causedBy($user)
+            ->withProperties([
+                'subject_name' => $config->beautyContent,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('chỉnh sửa cấu hình trang web');
 
         Config::query()->where('id', $config_id)->update([
             'value' => $value

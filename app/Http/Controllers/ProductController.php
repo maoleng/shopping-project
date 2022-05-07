@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\product\StoreProductRequest;
 use App\Http\Requests\product\UpdateProductRequest;
+use App\Models\Admin;
 use App\Models\Config;
 use App\Models\Image;
 use App\Models\Manufacturer;
@@ -80,8 +81,8 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request): RedirectResponse
     {
         $data = $request->except(['_token', 'images']);
-        $create = Product::query()->create($data);
-        $product_id = $create->id;
+        $create_product = Product::query()->create($data);
+        $product_id = $create_product->id;
 
         $specification_data = $request->validated()['specification'];
         $specifications = explode(PHP_EOL, $specification_data);
@@ -105,6 +106,19 @@ class ProductController extends Controller
                 'product_id' => $product_id,
             ]);
         }
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('sản phẩm')
+            ->event('thêm')
+            ->causedBy($user)
+            ->performedOn($create_product)
+            ->withProperties([
+                'subject_name' => $create_product->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('thêm sản phẩm mới');
+
         return redirect()->route('products.index');
     }
 
@@ -202,6 +216,18 @@ class ProductController extends Controller
             ]);
         }
 
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('sản phẩm')
+            ->event('sửa')
+            ->causedBy($user)
+            ->performedOn($product)
+            ->withProperties([
+                'subject_name' => Product::query()->where('id', $product->id)->first()->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('cập nhật thông tin sản phẩm');
+
         return redirect()->route('products.index');
     }
 
@@ -226,6 +252,18 @@ class ProductController extends Controller
 
         Image::query()->where('product_id', $product->id)->delete();
         Product::query()->where('id', $product->id)->delete();
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('sản phẩm')
+            ->event('xóa')
+            ->causedBy($user)
+            ->performedOn($product)
+            ->withProperties([
+                'subject_name' => $product->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('xóa sản phẩm');
 
         return redirect()->route('products.index');
 

@@ -57,7 +57,20 @@ class AdminController extends Controller
      */
     public function store(StoreAdminRequest $request): RedirectResponse
     {
-        Admin::query()->create($request->validated());
+        $create = Admin::query()->create($request->validated());
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('nhân viên')
+            ->event('thêm')
+            ->causedBy($user)
+            ->performedOn($create)
+            ->withProperties([
+                'subject_name' => $create->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('thêm nhân viên');
+
         return redirect()->route('admins.index');
 
     }
@@ -109,6 +122,19 @@ class AdminController extends Controller
     public function update(UpdateAdminRequest $request, Admin $admin): RedirectResponse
     {
         Admin::query()->where('id', $admin->id)->update($request->validated());
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('nhân viên')
+            ->event('sửa')
+            ->causedBy($user)
+            ->performedOn($admin)
+            ->withProperties([
+                'subject_name' => $admin->find($admin->id)->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('cập nhật thông tin');
+
         return redirect()->back();
     }
 
@@ -121,6 +147,19 @@ class AdminController extends Controller
     public function destroy(Admin $admin): RedirectResponse
     {
         Admin::query()->where('id', $admin->id)->delete();
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('nhân viên')
+            ->event('xóa')
+            ->causedBy($user)
+            ->withProperties([
+                'subject_name' => $admin->name,
+                'cause_name' => session()->get('name')
+
+            ])
+            ->log('sa thải nhân viên');
+
         return redirect()->route('admins.index');
     }
 
@@ -129,6 +168,20 @@ class AdminController extends Controller
         Admin::query()->where('id', $admin->id)->update([
             'active' => 0
         ]);
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('nhân viên')
+            ->event('khóa')
+            ->causedBy($user)
+            ->performedOn($admin)
+            ->withProperties([
+                'subject_name' => $admin->name,
+                'cause_name' => session()->get('name')
+
+            ])
+            ->log('khóa tài khoản');
+
         return redirect()->back();
     }
 
@@ -137,6 +190,20 @@ class AdminController extends Controller
         Admin::query()->where('id', $admin->id)->update([
             'active' => 1
         ]);
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('nhân viên')
+            ->event('mở khóa')
+            ->causedBy($user)
+            ->performedOn($admin)
+            ->withProperties([
+                'subject_name' => $admin->name,
+                'cause_name' => session()->get('name')
+
+            ])
+            ->log('mở khóa tài khoản');
+
         return redirect()->back();
     }
 }

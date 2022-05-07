@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\type\StoreTypeRequest;
 use App\Http\Requests\type\UpdateTypeRequest;
+use App\Models\Admin;
 use App\Models\Config;
 use App\Models\Subtype;
 use App\Models\Type;
@@ -58,7 +59,20 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request): RedirectResponse
     {
-        Type::query()->create($request->validated());
+        $create = Type::query()->create($request->validated());
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('thể loại')
+            ->event('thêm')
+            ->causedBy($user)
+            ->performedOn($create)
+            ->withProperties([
+                'subject_name' => $create->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('thêm thể loại mới');
+
         return redirect()->route('types.index');
     }
 
@@ -98,6 +112,19 @@ class TypeController extends Controller
     public function update(UpdateTypeRequest $request, Type $type): RedirectResponse
     {
         Type::query()->where('id', $type->id)->update($request->validated());
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('thể loại')
+            ->event('sửa')
+            ->causedBy($user)
+            ->performedOn($type)
+            ->withProperties([
+                'subject_name' => Type::query()->where('id', $type->id)->first()->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('cập nhật thông tin thể loại');
+
         return redirect()->route('types.index');
     }
 
@@ -110,6 +137,18 @@ class TypeController extends Controller
     public function destroy(Type $type): RedirectResponse
     {
         Type::query()->where('id', $type->id)->delete();
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('thể loại')
+            ->event('xóa')
+            ->causedBy($user)
+            ->withProperties([
+                'subject_name' => $type->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('xóa thể loại');
+
         return redirect()->route('types.index');
     }
 

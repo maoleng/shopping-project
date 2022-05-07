@@ -5,8 +5,10 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Hành động</th>
             <th>Người thực hiện</th>
+            <th>Hành động</th>
+            <th>Tên đối tượng</th>
+            <th>Thời gian</th>
         </tr>
         </thead>
 
@@ -14,8 +16,10 @@
         @foreach($activities as $activity)
         <tr>
             <td>{{$activity->id}}</td>
+            <td>{{$activity->properties->get('cause_name')}}</td>
             <td>{{$activity->description}}</td>
-            <td>{{$activity->causer_id}}</td>
+            <td>{{$activity->properties->get('subject_name')}}</td>
+            <td>{{$activity->created_at}}</td>
         </tr>
         @endforeach
         </tbody>

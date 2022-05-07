@@ -31,6 +31,16 @@ class AuthController extends Controller
             session()->put('id', $user->id);
             session()->put('level', $user->level);
             session()->put('name', $user->name);
+
+            activity()
+                ->useLog('xác thực')
+                ->event('đăng nhập')
+                ->causedBy($user)
+                ->withProperties([
+                    'cause_name' => session()->get('name')
+                ])
+                ->log('đăng nhập vào hệ thống');
+
             return redirect()->route('products.index');
         } catch (\Throwable $e) {
             return redirect()->route('admins.login');
@@ -39,7 +49,20 @@ class AuthController extends Controller
 
     public function processLogout(): RedirectResponse
     {
+        $name = session()->get('name');
+        $id = session()->get('id');
+
         session()->flush();
+
+        activity()
+            ->useLog('xác thực')
+            ->event('đăng xuất')
+            ->causedBy(Admin::query()->where('id', $id)->first())
+            ->withProperties([
+                'cause_name' => $name
+            ])
+            ->log('đăng xuất khỏi hệ thống');
+
         return redirect()->route('admins.login');
     }
 

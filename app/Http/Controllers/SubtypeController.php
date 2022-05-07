@@ -4,6 +4,7 @@
 
     use App\Http\Requests\subtype\StoreSubtypeRequest;
     use App\Http\Requests\subtype\UpdateSubtypeRequest;
+    use App\Models\Admin;
     use App\Models\Config;
     use App\Models\Subtype;
     use App\Models\Type;
@@ -68,7 +69,20 @@
         {
             $data = $request->validated();
             $data['type_id'] = $type->id;
-            Subtype::query()->create($data);
+            $create = Subtype::query()->create($data);
+
+            $user = Admin::query()->find(session()->get('id'));
+            activity()
+                ->useLog('danh mục')
+                ->event('thêm')
+                ->causedBy($user)
+                ->performedOn($create)
+                ->withProperties([
+                    'subject_name' => $create->name,
+                    'cause_name' => session()->get('name')
+                ])
+                ->log('thêm danh mục vào thể loại ' . $type->name);
+
             return redirect()->route('subtypes.index', ['type' => $type->id]);
         }
 
@@ -108,10 +122,23 @@
          * @param  Subtype  $Subtype
          * @return RedirectResponse
          */
-        public function update(UpdateSubtypeRequest $request, Subtype $Subtype): RedirectResponse
+        public function update(UpdateSubtypeRequest $request, Subtype $subtype): RedirectResponse
         {
-            Subtype::query()->where('id', $Subtype->id)->update($request->validated());
-            return redirect()->route('subtypes.index', ['type' => $Subtype->type_id]);
+            Subtype::query()->where('id', $subtype->id)->update($request->validated());
+
+            $user = Admin::query()->find(session()->get('id'));
+            activity()
+                ->useLog('danh mục')
+                ->event('sửa')
+                ->causedBy($user)
+                ->performedOn($subtype)
+                ->withProperties([
+                    'subject_name' => Subtype::query()->where('id', $subtype->id)->first()->name,
+                    'cause_name' => session()->get('name')
+                ])
+                ->log('cập nhật thông tin danh mục');
+
+            return redirect()->route('subtypes.index', ['type' => $subtype->type_id]);
         }
 
         /**
@@ -120,9 +147,21 @@
          * @param  Subtype  $Subtype
          * @return RedirectResponse
          */
-        public function destroy(Subtype $Subtype): RedirectResponse
+        public function destroy(Subtype $subtype): RedirectResponse
         {
-            Subtype::query()->where('id', $Subtype->id)->delete($Subtype);
-            return redirect()->route('subtypes.index', ['type' => $Subtype->type_id]);
+            Subtype::query()->where('id', $subtype->id)->delete($subtype);
+
+            $user = Admin::query()->find(session()->get('id'));
+            activity()
+                ->useLog('danh mục')
+                ->event('xóa')
+                ->causedBy($user)
+                ->withProperties([
+                    'subject_name' => $subtype->name,
+                    'cause_name' => session()->get('name')
+                ])
+                ->log('xóa danh mục');
+
+            return redirect()->route('subtypes.index', ['type' => $subtype->type_id]);
         }
     }

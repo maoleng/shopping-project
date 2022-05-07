@@ -20,6 +20,7 @@ class ManufacturerController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  Request  $request
      * @return Application|Factory|View
      */
     public function index(Request $request): View|Factory|Application
@@ -60,13 +61,19 @@ class ManufacturerController extends Controller
         $path = Storage::disk('public')->putFile('manufacturers', $request->file('image'));
         $array = $request->validated();
         $array['image'] = $path;
-        $a = Manufacturer::query()->create($array);
+        $create = Manufacturer::query()->create($array);
 
-        $user_model = Admin::find(session()->get('id'));
+        $user = Admin::query()->find(session()->get('id'));
         activity()
-            ->causedBy($user_model)
-            ->performedOn($a)
-            ->log('edited');
+            ->useLog('nhà cung cấp')
+            ->event('thêm')
+            ->causedBy($user)
+            ->performedOn($create)
+            ->withProperties([
+                'subject_name' => $create->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('thêm nhà cung cấp mới');
 
         return redirect()->route('manufacturers.index');
     }
@@ -106,13 +113,28 @@ class ManufacturerController extends Controller
      */
     public function update(Manufacturer $manufacturer, UpdateManufacturerRequest $request): RedirectResponse    {
         $filename = $manufacturer->image;
-        Storage::disk('public')->delete($filename);
-
-
         $array = $request->validated();
-        $array['image'] = Storage::disk('public')->putFile('manufacturers', $request->file('image'));
 
-        $manufacturer->where('id', $manufacturer->id)->update($array);
+        if (isset($request->image)) {
+            Storage::disk('public')->delete($filename);
+            $array['image'] = Storage::disk('public')->putFile('manufacturers', $request->file('image'));
+        }
+
+        Manufacturer::query()->where('id', $manufacturer->id)->update($array);
+        Manufacturer::query()->where('id', $manufacturer->id)->first();
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('nhà cung cấp')
+            ->event('sửa')
+            ->causedBy($user)
+            ->performedOn($update)
+            ->withProperties([
+                'subject_name' => $update->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('cập nhật thông tin nhà cung cấp');
+
         return redirect()->route('manufacturers.index');
     }
 
@@ -127,6 +149,18 @@ class ManufacturerController extends Controller
         $filename = $manufacturer->image;
         Storage::disk('public')->delete($filename);
         $manufacturer->delete();
+
+        $user = Admin::query()->find(session()->get('id'));
+        activity()
+            ->useLog('nhà cung cấp')
+            ->event('xóa')
+            ->causedBy($user)
+            ->withProperties([
+                'subject_name' => $manufacturer->name,
+                'cause_name' => session()->get('name')
+            ])
+            ->log('xóa nhà cung cấp');
+
         return redirect()->route('manufacturers.index');
     }
 }
