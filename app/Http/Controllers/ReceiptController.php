@@ -30,28 +30,34 @@ class ReceiptController extends Controller
         if (empty($status)) {
             $receipts = Receipt::query()
                 ->where('name', 'like', '%'. $search . '%')
-                ->select('*')->paginate(20);
+                ->select('*')
+                ->orderBy('id', 'DESC')
+                ->paginate(20);
 
         }
         switch ($status) {
             case '0':
                 $receipts = Receipt::query()->where('status', '0')
                     ->where('name', 'like', '%'. $search . '%')
+                    ->orderBy('id', 'DESC')
                     ->paginate(20);
                 break;
             case '1':
                 $receipts = Receipt::query()->where('status', '1')
                     ->where('name', 'like', '%'. $search . '%')
+                    ->orderBy('id', 'DESC')
                     ->paginate(20);
                 break;
             case '2':
                 $receipts = Receipt::query()->where('status', '2')
                     ->where('name', 'like', '%'. $search . '%')
+                    ->orderBy('id', 'DESC')
                     ->paginate(20);
                 break;
             case '3':
                 $receipts = Receipt::query()->where('status', '3')
                     ->where('name', 'like', '%'. $search . '%')
+                    ->orderBy('id', 'DESC')
                     ->paginate(20);
                 break;
         }
