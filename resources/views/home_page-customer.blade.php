@@ -24,7 +24,7 @@
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 icon-place "><i class="bi bi-lightning-fill"></i></div>
                         <h2 class=" feature-heading">Giao hàng nhanh gọn</h2>
                         <p>Hàng luôn đến tay khách hàng một cách nhanh chóng</p>
-                        <a class="text-decoration-none" href="#!">
+                        <a class="text-decoration-none" href="{{route('products')}}">
                         Xem sản phẩm ngay chờ chi
                             <i class="bi bi-arrow-right"></i>
                         </a>
@@ -34,7 +34,7 @@
 </div>
                         <h2 class=" feature-heading">Hàng 100% chính hãng</h2>
                         <p>Hàng luôn đảm bảo chất lượng một cách tối đa</p>
-                        <a class="text-decoration-none" href="#!">
+                        <a class="text-decoration-none" href="{{route('products')}}">
                         Xem sản phẩm ngay chờ chi
                             <i class="bi bi-arrow-right"></i>
                         </a>
@@ -43,7 +43,7 @@
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 icon-place"><i class="bi bi-tags-fill"></i></div>
                         <h2 class=" feature-heading">Giá cả phải chăng</h2>
                         <p>Giá cả luôn sẵn sàng làm cho khách hàng phải hài lòng</p>
-                        <a class="text-decoration-none" href="#!">
+                        <a class="text-decoration-none" href="{{route('products')}}">
                             Xem sản phẩm ngay chờ chi
                             <i class="bi bi-arrow-right"></i>
                         </a>

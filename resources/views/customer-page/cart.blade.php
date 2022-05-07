@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col l-2 m-2 c-2">
-                <p class="info-containter price-per-unit">{{$cart['price']}}</p>
+                <p class="info-containter price-per-unit">{{$cart['price']}} đồng</p>
             </div>
             <div class="col l-2 m-2 c-2 info-containter">
                 <div class="quantity-container">
@@ -108,6 +108,6 @@
             $each = $cart['price'] * $cart['count'];
             $total += $each;
         }
-        return $total;
+        return $total . ' đồng';
     }
 ?>
