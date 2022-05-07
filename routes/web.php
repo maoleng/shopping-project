@@ -1,5 +1,6 @@
 <?php
 
+    use App\Http\Controllers\ActivityController;
     use App\Http\Controllers\AdminController;
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\ConfigController;
@@ -111,6 +112,7 @@ Route::group([
                 Route::put('/update/{config}', [ConfigController::class, 'update'])->name('update');
             });
 
+            Route::get('/log', [ActivityController::class, 'index'])->name('admins.log');
         });
 
 

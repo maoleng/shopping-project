@@ -55,6 +55,9 @@ class Product extends Model
 
     public function getSalePercentAttribute(): string
     {
+        if ($this->price_old === 1) {
+            return '';
+        }
         return round(($this->price_old - $this->price) / $this->price_old, 2) * 100 . '%';
     }
 
@@ -63,6 +66,8 @@ class Product extends Model
         $video_id = explode("=", $this->video)[1];
         return 'https://www.youtube.com/embed/' . $video_id;
     }
+
+//    public function get
 
     public function mostSaleProduct(): Collection|array
     {

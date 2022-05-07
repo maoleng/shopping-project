@@ -177,7 +177,7 @@
         </li>
 
         <li class="side-nav-item">
-            <a href="apps-chat.html" class="side-nav-link">
+            <a href="{{route('admins.log')}}" class="side-nav-link">
                 <i class="mdi mdi-history"></i>
                 <span> Lịch sử hoạt động </span>
             </a>

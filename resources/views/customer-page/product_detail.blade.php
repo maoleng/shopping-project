@@ -18,7 +18,7 @@
                     <div class="mySlides fade">
                         <div class="numbertext">{{$key + 1}} / {{count($images)}}</div>
                         <img src="{{$image->path}}" style="width:100%">
-                        <div class="text">Caption Text</div>
+                        <div class="text">{{$product->name}}</div>
                     </div>
                     @endforeach
                     <!-- Next and previous buttons -->
@@ -66,14 +66,6 @@
                     <p class="product-content-descrip">
                         <span>Bảo hành:</span>
                         <span class="bold">{{$product->insurance}}</span>
-                    </p>
-                    <p class="product-content-descrip product-content-descrip-list">
-                        <span>Mô tả:</span>
-                    <ul class="bold">
-                        <li class="product-content-descrip product-content-descrip-item">
-                            {{$product->description}}
-                        </li>
-                    </ul>
                     </p>
                     <p class="product-content-descrip">
                         <span>Thương hiệu:</span>

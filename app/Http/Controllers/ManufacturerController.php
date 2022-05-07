@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\manufacturer\StoreManufacturerRequest;
 use App\Http\Requests\manufacturer\UpdateManufacturerRequest;
+use App\Models\Admin;
 use App\Models\Config;
 use App\Models\Manufacturer;
 use Illuminate\Contracts\Foundation\Application;
@@ -59,7 +60,14 @@ class ManufacturerController extends Controller
         $path = Storage::disk('public')->putFile('manufacturers', $request->file('image'));
         $array = $request->validated();
         $array['image'] = $path;
-        Manufacturer::query()->create($array);
+        $a = Manufacturer::query()->create($array);
+
+        $user_model = Admin::find(session()->get('id'));
+        activity()
+            ->causedBy($user_model)
+            ->performedOn($a)
+            ->log('edited');
+
         return redirect()->route('manufacturers.index');
     }
 

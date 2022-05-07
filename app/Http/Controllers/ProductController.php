@@ -159,7 +159,9 @@ class ProductController extends Controller
     {
 
         $data = $request->except(['_token', '_method', 'specification', 'images']);
-        $data['price_old'] = $product->price;
+        if ($product->price !== (int)$request->price) {
+            $data['price_old'] = $product->price;
+        }
 
         if (isset($request->validated()['images'])) {
             $filename = "products/" . $product->id;

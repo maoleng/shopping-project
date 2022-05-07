@@ -59,6 +59,7 @@ class AdminController extends Controller
     {
         Admin::query()->create($request->validated());
         return redirect()->route('admins.index');
+
     }
 
     /**
