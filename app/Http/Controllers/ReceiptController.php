@@ -131,7 +131,7 @@ class ReceiptController extends Controller
         $user = Admin::query()->find(session()->get('id'));
         activity()
             ->useLog('hóa đơn')
-            ->event('sửa')
+            ->event('cập nhật')
             ->causedBy($user)
             ->performedOn($receipt)
             ->withProperties([

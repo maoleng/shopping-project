@@ -34,6 +34,14 @@ class Config extends Model
                 return 'Lời lưu ý khi khách đặt hàng';
             case 'youtube':
                 return 'Đường dẫn đến trang youtube';
+            case 'logo_max':
+                return 'Đường dẫn đến ảnh logo trang web kích cỡ gốc';
+            case 'logo_min':
+                return 'Đường dẫn đến ảnh logo trang web kích cỡ thấp';
+            case 'about_us_youtube':
+                return 'Đường dẫn đến video youtube giới thiệu cửa hàng';
+            case 'qr_code':
+                return 'Đường dẫn đến ảnh mã QR';
         }
     }
 

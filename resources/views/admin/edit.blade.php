@@ -87,52 +87,26 @@
                             <table class="table table-borderless table-nowrap mb-0">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>1</th>
+                                        <th>#</th>
                                         <th>Hành động</th>
-                                        <th>Đối tượng</th>
                                         <th>Tên đối tượng</th>
                                         <th>Thời gian</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($activities as $activity)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{$activity->id}}</td>
                                         <td>
-                                            <span class="badge badge-info-lighten">Thêm</span>
+                                            <span class="badge badge-info-lighten">{{$activity->description}}</span>
                                         </td>
-                                        <td>Sản phẩm</td>
-                                        <td>Máy hút cỏ</td>
-                                        <td>01/04/2022</td>
+                                        <td>{{$activity->properties->get('subject_name')}}</td>
+                                        <td>{{$activity->created_at}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <span class="badge badge-danger-lighten">Xóa</span>
-                                        </td>
-                                        <td>Sản phẩm</td>
-                                        <td>Máy hút cỏ</td>
-                                        <td>01/04/2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <span class="badge badge-success-lighten">Sửa</span>
-                                        </td>
-                                        <td>Sản phẩm</td>
-                                        <td>Máy hút cỏ</td>
-                                        <td>01/04/2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <span class="badge badge-success-lighten">Cập nhật</span>
-                                        </td>
-                                        <td>Sản phẩm</td>
-                                        <td>Máy hút cỏ</td>
-                                        <td>01/04/2022</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
+                            {{ $activities->links('vendor.pagination.bootstrap-5') }}
                         </div>
                     </div>
                     <div class="tab-pane" id="settings">

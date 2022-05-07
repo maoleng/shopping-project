@@ -9,7 +9,7 @@
     {
         public function index()
         {
-            $activities = Activity::query()->orderBy('id', 'DESC')->get();
+            $activities = Activity::query()->orderBy('id', 'DESC')->paginate(20);
 
             $config = Config::all();
             return view('activity_log', [

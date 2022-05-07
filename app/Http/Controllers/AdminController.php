@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Spatie\Activitylog\Models\Activity;
 
 class AdminController extends Controller
 {
@@ -97,9 +98,12 @@ class AdminController extends Controller
     public function edit(Admin $admin): Application|Factory|View|RedirectResponse
     {
         $config = Config::all();
+        $activities = Activity::query()->orderBy('id', 'DESC')->paginate(5);
+
         if (session()->get('level') === 1) {
             return view('admin.edit', [
                 'admin' => $admin,
+                'activities' => $activities,
                 'config' => $config,
             ]);
         }
@@ -108,6 +112,7 @@ class AdminController extends Controller
         }
         return view('admin.edit', [
             'admin' => $admin,
+            'activities' => $activities,
             'config' => $config,
         ]);
     }

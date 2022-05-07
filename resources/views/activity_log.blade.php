@@ -23,5 +23,8 @@
         </tr>
         @endforeach
         </tbody>
+    </table>
+
+    {{ $activities->links('vendor.pagination.bootstrap-5') }}
 
 @endsection
