@@ -10,7 +10,7 @@ class Receipt extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'address', 'phone', 'mail', 'note', 'total'
+        'name', 'address', 'phone', 'note', 'total'
     ];
 
     public function getStringStatusHTMLAttribute()

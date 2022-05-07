@@ -20,7 +20,6 @@ class ReceiptFactory extends Factory
             'name' => $this->faker->name,
             'address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber,
-            'mail' => $this->faker->email,
             'status' => $this->faker->numberBetween(0, 3),
         ];
     }

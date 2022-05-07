@@ -23,7 +23,7 @@
 
                     <div class="clearfix">
                         <div class="float-left mb-3">
-                            <img src="assets/images/logo-light.png" alt="" height="18">
+                            <img src="{{$config[10]->value}}" alt="" height="120">
                         </div>
                         <div class="float-right">
                             <h4 class="m-0 d-print-none">Hóa đơn</h4>
@@ -53,7 +53,6 @@
                             <address>
                                 {{$receipt->name}}<br>
                                 {{$receipt->address}}<br>
-                                {{$receipt->mail}}<br>
                                 <abbr title="Phone">P:</abbr> {{$receipt->phone}}
                             </address>
                         </div>
@@ -63,7 +62,6 @@
                             <address>
                                 {{$receipt->name}}<br>
                                 {{$receipt->address}}<br>
-                                {{$receipt->mail}}<br>
                                 <abbr title="Phone">P:</abbr> {{$receipt->phone}}
                             </address>
                         </div>
@@ -110,15 +108,14 @@
                                 <div class="clearfix pt-3">
                                     <h6 class="text-muted">Chú ý</h6>
                                     <small>
-                                        Lời dặn dò khi đặt hàng gì đó
+                                        {{$config[7]->value}}
                                     </small>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-right mt-3 mt-sm-0">
                                     <p><b>Tổng tiền:</b> <span class="float-right">{{calculateMoney($receipt_details)}}</span></p>
-                                    <p><b>Tiền ship:</b> <span class="float-right">515.00</span></p>
-                                    <h3>{{calculateMoney($receipt_details)}}</h3>
+                                    <h3>{{calculateMoney($receipt_details)}} đồng</h3>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

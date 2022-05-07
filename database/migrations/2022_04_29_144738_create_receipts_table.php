@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name', 250);
             $table->text('address');
             $table->string('phone',15);
-            $table->string('mail',250);
             $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->integer('total')->default(0);
