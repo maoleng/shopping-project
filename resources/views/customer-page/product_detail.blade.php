@@ -15,7 +15,7 @@
 
                     <!-- Full-width images with number and caption text -->
                     @foreach($images as $key => $image)
-                    <div class="mySlides fade">
+                    <div class="mySlides fade-item">
                         <div class="numbertext">{{$key + 1}} / {{count($images)}}</div>
                         <img src="{{$image->path}}" style="width:100%">
                         <div class="text">{{$product->name}}</div>

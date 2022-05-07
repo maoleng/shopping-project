@@ -108,14 +108,16 @@ td {
     width: 100%;
 }
 th {
-    padding: 4px;
+    padding: 4px !important;
     font-size: 2rem;
-    background-color: #ec593c;
-    color: white;
+    background-color: #f2f2f2;
+    color: black;
+    font-weight: 400 !important;
 }
 td {
     font-size: 1.8rem;
-    padding: 8px;
+    padding: 8px !important;
+    font-weight: 700 !important;
 }
 /* Search history */
 .search-history {
@@ -328,7 +330,7 @@ td {
 }
 
 /* Fading animation */
-.fade {
+.fade-item {
     animation-name: fade;
     animation-duration: 1.5s;
 }

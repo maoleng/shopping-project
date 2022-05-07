@@ -37,7 +37,7 @@ let App = {
     },
 };
 App.start();
-let slideIndex = 1;
+let slideIndex = 0;
 showSlides(slideIndex);
 
 // Next/previous controls
