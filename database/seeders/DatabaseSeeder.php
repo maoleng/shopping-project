@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          Type::factory(4)->create();
-         Subtype::factory(32)->create();
-         Manufacturer::factory(30)->create();
-         Product::factory(1000)->create();
-         Image::factory(3000)->create();
-         Specification::factory(10000)->create();
-         SpecificationProduct::factory(10000)->create();
-         Receipt::factory(2500)->create();
-         ReceiptDetail::factory(10000)->create();
+         Subtype::factory(8)->create();
+         Manufacturer::factory(7)->create();
+         Product::factory(250)->create();
+         Image::factory(500)->create();
+         Specification::factory(2500)->create();
+         SpecificationProduct::factory(2500)->create();
+         Receipt::factory(1000)->create();
+         ReceiptDetail::factory(2500)->create();
     }
 }
